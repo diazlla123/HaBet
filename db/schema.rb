@@ -10,9 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_09_195955) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_09_210325) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "groups", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.boolean "admin"
+    t.bigint "user_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_members_on_group_id"
+    t.index ["user_id"], name: "index_members_on_user_id"
+  end
+
+  create_table "progresses", force: :cascade do |t|
+    t.float "completion"
+    t.bigint "task_id", null: false
+    t.bigint "member_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_progresses_on_member_id"
+    t.index ["task_id"], name: "index_progresses_on_task_id"
+  end
+
+  create_table "punishments", force: :cascade do |t|
+    t.string "name"
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_punishments_on_group_id"
+  end
+
+  create_table "rewards", force: :cascade do |t|
+    t.string "name"
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_rewards_on_group_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.float "quantity"
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_tasks_on_group_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +73,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_09_195955) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "members", "groups"
+  add_foreign_key "members", "users"
+  add_foreign_key "progresses", "members"
+  add_foreign_key "progresses", "tasks"
+  add_foreign_key "punishments", "groups"
+  add_foreign_key "rewards", "groups"
+  add_foreign_key "tasks", "groups"
 end
