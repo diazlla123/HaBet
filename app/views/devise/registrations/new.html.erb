@@ -1,25 +1,48 @@
 <h2>Sign up</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+<div class="container-sm border border-primary mb-4 w-75 p-2">
+  <h1>HaBet</h1>
+  <p>Go further together</p>
+</div>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
-  </div>
+<div class="container-sm border border-primary w-75 px-2 py-4">
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
+    <div class="form-inputs">
+      <%= f.input :first_name,
+                  require: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "first_name", placeholder: "John" } %>
+      <%= f.input :last_name,
+                  require: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "last_name", placeholder: "Doe" } %>
+      <%= f.input :genre,
+                  autofocus: true,
+                  input_html: {autocomplete: "genre", placeholder: "Enter your genre"} %>
+      <%= f.input :birth_date,
+                  autofocus: true %>
+      <%= f.input :email,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "email", placeholder: "Enter your email" } %>
+      <%= f.input :password,
+                  required: true,
+                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  input_html: { autocomplete: "new-password", placeholder: "Enter your password" } %>
+      <%= f.input :password_confirmation,
+                  required: true,
+                  input_html: { autocomplete: "new-password", placeholder: "Confirm your password" } %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+</div>
+
+
 
 <%= render "devise/shared/links" %>
