@@ -9,7 +9,8 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @members = Member.where(group: @group)
     @users = User.joins(:members).where(members: { group_id: @group })
-    @tasks = Task.where(group: @group)
+    # @tasks = Task.where(group: @group)
+    @tasks = @group.tasks
     # For progresses, we're going to find each progress in the view directly
   end
 
@@ -40,7 +41,7 @@ class GroupsController < ApplicationController
 
       redirect_to @group, notice: "ESSOOO"
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
