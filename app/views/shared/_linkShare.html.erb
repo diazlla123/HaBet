@@ -1,0 +1,31 @@
+<!-- Botón que activa el modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Add friend
+</button>
+
+<!-- Estructura del Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        
+        <!-- Header del Modal -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <%= @group.name %>
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+      <!-- Cuerpo del Modal -->
+      <div class="modal-body">
+        <%= "http://[::1]:3000/groups/#{@group.id}" %>
+      </div>
+
+      <!-- Footer del Modal -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">go back</button>
+        <button type="button" class="btn btn-primary">Copy link</button>
+      </div>
+    </div>
+  </div>
+</div>
