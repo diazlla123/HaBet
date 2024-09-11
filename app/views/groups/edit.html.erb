@@ -1,0 +1,32 @@
+<h1>Edit group here</h1>
+
+<%= simple_form_for @group do |f| %>
+  <%= f.input :name, required: true, placeholder: @group.name %>
+
+  <h3>Tasks</h3>
+  <%= f.fields_for :tasks do |t| %>
+    <% Task.where(group: @group).each do |task| %>
+      <%= t.input :name, required: true, placeholder: task.name %>
+      <%= t.input :unit, required: true, collection: ["km", "unit2", "unit3"], include_blank: "Select unit type" %> <!-- Dropdown menu -->
+      <%= t.input :quantity, required: true, placeholder: task.quantity %>
+    <% end %>
+  <% end %>
+
+  <h3>Rewards</h3>
+  <%= f.fields_for :rewards do |r| %>
+    <% Reward.where(group: @group).each do |reward| %>
+      <%= r.input :name, required: true, placeholder: reward.name %>
+    <% end %>
+  <% end %>
+
+  <h3>Punishments</h3>
+  <%= f.fields_for :punishments do |p| %>
+    <% Punishment.where(group: @group).each do |punishment| %>
+      <%= p.input :name, required: true, placeholder: punishment.name %>
+    <% end %>
+  <% end %>
+
+  <%= f.submit "Create Group" %>
+<% end %>
+
+<%= link_to "Back", groups_path %>

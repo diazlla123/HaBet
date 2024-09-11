@@ -36,9 +36,17 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    @group = Group.find(params[:id])
+    @group.tasks.build if @group.tasks.empty?
+    @group.rewards.build if @group.rewards.empty?
+    @group.punishments.build if @group.punishments.empty?
+    @group.members.build if @group.members.empty?
   end
 
   def update
+    @group = Group.find(params[:id])
+    @group.update(group_params)
+    redirect_to group_path(@group)
   end
 
   private
