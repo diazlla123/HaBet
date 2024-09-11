@@ -1,4 +1,10 @@
 <h1><%= @group.name %></h1>
+  <% @tasks.each do |task| %>
+    <%= task.name %>
+    <% @members.each do |member| %>
+      <%= User.find(member.user_id).username %>
+      <% progress = Progress.find_by(member_id: member.id, task_id: task.id) %>
+      <%= "#{(progress.completion).round(2)} %" %>
+    <% end %>
+  <% end %>
 <%= link_to "Back", groups_path %>
-
-
