@@ -1,4 +1,7 @@
-<h1><%= @group.name %></h1>
-<%= link_to "Back", groups_path %>
-
-
+<div data-controller="group-member" data-group-member-group-id-value="<%=@group.id%>">
+  <h1>
+    <%= @group.name %>
+  </h1>
+  <%= link_to "Back", groups_path %>
+  <%= render 'shared/linkShare' %>
+</div>
