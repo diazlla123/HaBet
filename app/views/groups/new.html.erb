@@ -1,0 +1,26 @@
+<h1>New Group</h1>
+
+<%= simple_form_for @group do |f| %>
+  <%= f.input :name, required: true, placeholder: "Enter a name" %>
+
+  <h3>Tasks</h3>
+  <%= f.fields_for :tasks do |t| %>
+    <%= t.input :name, required: true, placeholder: "Enter task name" %>
+    <%= t.input :unit, required: true, collection: ["unit1", "unit2", "unit3"], include_blank: "Select unit type" %> <!-- Dropdown menu -->
+    <%= t.input :quantity, required: true, placeholder: "Enter a number" %>
+  <% end %>
+
+  <h3>Rewards</h3>
+  <%= f.fields_for :rewards do |r| %>
+    <%= r.input :name, required: true, placeholder: "Enter reward name" %>
+  <% end %>
+
+  <h3>Punishments</h3>
+  <%= f.fields_for :punishments do |p| %>
+    <%= p.input :name, required: true, placeholder: "Enter punishment name" %>
+  <% end %>
+
+  <%= f.submit "Create Group" %>
+<% end %>
+
+<%= link_to "Back", groups_path %>

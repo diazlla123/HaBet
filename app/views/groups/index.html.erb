@@ -1,4 +1,11 @@
 <h1>All groups here</h1>
 <% @user_groups.each do |group| %>
   <%= group.name %>
+  <%= link_to group.name, group_path(group.id)%>
+    <%= link_to "Delete Group",
+    group_path(group.id),
+    data: {turbo_method: :delete,
+    turbo_confirm: "Are you sure?"} %>
 <% end %>
+
+<%= link_to "Create Group", new_group_path %>
