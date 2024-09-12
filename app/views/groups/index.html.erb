@@ -4,11 +4,15 @@
   <div class="only-group">
   <%= group.name %>
   <%= link_to group.name, group_path(group.id)%>
+
+  <% if Member.find_by(user_id: current_user.id, group_id: group.id ).admin %>
     <%= link_to "Delete",
-    group_path(group.id),
-    data: {turbo_method: :delete,
-    turbo_confirm: "Are you sure?"},
-    class: "delete-button" %>
+      group_path(group.id),
+      data: {turbo_method: :delete,
+      turbo_confirm: "Are you sure?"},
+      class: "delete-button" %>
+  <% end %>
+
     <%= link_to "Edit Group", edit_group_path(group.id) %>
   </div>
 <% end %>
