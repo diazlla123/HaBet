@@ -10,6 +10,6 @@ class ProgressesController < ApplicationController
     new_quantity = current_quantity + change
     new_completion = (new_quantity / Task.find(@progress.task_id).quantity) * 100
     @progress.update(completion: new_completion)
-    redirect_to groups_path
+    redirect_to group_path(Task.find(@progress.task_id).group_id)
   end
 end

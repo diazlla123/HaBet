@@ -1,9 +1,12 @@
 <h1>Edit progress</h1>
 <%= "Your current progress: #{@progress.completion.round(2)}%" %>
+<%= "The current goal: #{Task.find(@progress.task_id).quantity} #{Task.find(@progress.task_id).unit}" %>
+<%= "What you did so far: #{(Task.find(@progress.task_id).quantity * @progress.completion) / 100}" %>
 <%= form_with(model: @progress, url: progress_path(@progress.id), method: :patch) do |f| %>
-  <%= label_tag :new_progress, "New progress" %>
+  <%= label_tag :new_progress, "New progress in #{Task.find(@progress.task_id).unit}" %>
   <%= number_field_tag :new_progress, nil, required: true, placeholder: "Enter progress here" %>
   <%= f.submit 'Update progression' %>
-  <% console %>
 <% end %>
 <%= link_to "Back", groups_path %>
+
+<% console %>
