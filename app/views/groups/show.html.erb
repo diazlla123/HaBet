@@ -10,7 +10,7 @@
         <% progress = Progress.find_by(member_id: member.id, task_id: task.id) %>
         <p>
           <%= User.find(member.user_id).username %>:
-          <%= progress.present? ? "#{progress.completion.round(2)}%" : "No progress available" %>
+          <%= progress.present? ? (link_to "#{progress.completion.round(2)}%", edit_progress_path(progress.id)) : "No progress available" %>
         </p>
       <% end %>
   <% end %>
