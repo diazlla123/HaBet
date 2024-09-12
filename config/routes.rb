@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :members, only: [:create]
   end
 
+  resources :progresses, only: [:edit, :update]
   # Defines the root path route ("/")
   # root "posts#index"
 end
