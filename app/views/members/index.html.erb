@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <h1>Group Name</h1>
+  </div>
+
+  <!-- Card principal-->
+  <div class="row border">
+
+    <div class="row border">
+      <div class="col-8">
+        <h2>Members Rank</h2>
+
+        </div>
+      <div class="col-4">
+        <%= link_to request.referrer || root_path do %>
+      <i class="fa-solid fa-xmark"></i>
+    <% end %>
+      </div>
+    </div>
+
+    <!-- Listado de miembros y tu puesto-->
+    <div class="row">
+
+      <% @sorted_positions.each_with_index do |user, index| %>
+        <div class="row">
+          <div class="col-2">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="col-10">
+          <div class="row"><h5><%= user[:username] %></h5></div>
+          <div class="row"><p><%=index+1%>nd Place!</p></div>
+          <div class="row">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: <%= user[:average_progress]*100 %>%">
+                <%= user[:average_progress]*100 %>%
+              </div>
+            </div>
+          </div>
+
+        </div>
+        </div>
+
+
+      <% end %>
+
+    </div>
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+</div>

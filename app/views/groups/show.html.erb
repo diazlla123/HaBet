@@ -6,6 +6,7 @@
 <% if @tasks.present? %>
   <% @tasks.each do |task| %>
       <h2><%= task.name %></h2>
+      <p>Task Goal: <%= task.quantity %></p>
       <% @members.each do |member| %>
         <% progress = Progress.find_by(member_id: member.id, task_id: task.id) %>
         <p>
@@ -30,6 +31,25 @@
 <% else %>
     <p>No tasks available</p>
 <% end %>
+
+
+<hr> <br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <%= link_to group_members_path(@group) do %>
+        <i class="fa-solid fa-users"></i>
+      <% end %>
+    </div>
+    <div class="col-9">
+      <h3>Your postition in the group</h3>
+      <h5><%= @my_index %>'s Place</h5>
+      <p>Out of <%= @members.size %></p>
+      <p>Behind <%= "Y" %> by <%= 'xxx' %> points </p>
+    </div>
+  </div>
+</div>
 
 <hr>
 <div class="container border mx-2">
