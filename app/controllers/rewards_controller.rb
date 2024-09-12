@@ -27,4 +27,5 @@ class RewardsController < ApplicationController
     @group.rewards
   end
 
+
 end

@@ -12,6 +12,8 @@ class GroupsController < ApplicationController
     # @tasks = Task.where(group: @group)
     @tasks = @group.tasks if @group.tasks.present?
     @task = Task.new
+    @reward = Reward.new
+    @punishment = Punishment.new
     # For progresses, we're going to find each progress in the view directly
   end
 

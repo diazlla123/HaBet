@@ -38,22 +38,28 @@
     </div>
 
     <!-- POPUP REWARDS -->
-    <div data-controller="add-group-reward">
-      <button data-action="click->add-group-reward#addReward" class="btn btn-primary">Add Task</button>
+  <div data-controller="add-group-reward">
+      <button data-action="click->add-group-reward#addReward" class="btn btn-primary">Add Reward</button>
       <div data-add-group-reward-target="togglableElement" class="d-none">
-        <%= render "shared/addnewreward", task: @task %>
+        <%= render "shared/addnewreward", reward: @reward %>
       </div>
   </div>
 
 
-
-    <!-- POPUP PUNISHMENT -->
     <div class="col-6">
       <h2>Punishments</h2>
       <% @group.punishments.each do  |punishment| %>
         <p><%= punishment.name %></p>
       <% end %>
     </div>
+  </div>
+
+      <!-- POPUP PUNISHMENT -->
+  <div data-controller="add-group-punishment">
+      <button data-action="click->add-group-punishment#addPunishment" class="btn btn-primary">Add Punishment</button>
+      <div data-add-group-punishment-target="togglableElement" class="d-none">
+        <%= render "shared/addnewpunishment", punishment: @punishment %>
+      </div>
   </div>
 
 </div>
