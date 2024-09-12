@@ -7,4 +7,4 @@
   <%= number_field_tag :new_progress, nil, required: true, placeholder: "Enter progress here", step: :any %>
   <%= f.submit 'Update progression' %>
 <% end %>
-<%= link_to "Back", groups_path %>
+<%= link_to "Back", group_path(Task.find(@progress.task_id).group_id) %>
