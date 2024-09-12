@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :groups do
     resources :members, only: [:create]
+    resources :rewards, only: [:index]
   end
 
   # Defines the root path route ("/")

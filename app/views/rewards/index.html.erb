@@ -1,0 +1,11 @@
+<h1>Your rewards are</h1>
+
+div.container>div.row>
+
+<% @sorted_positions.each_with_index do |user, index| %>
+<p><%= "#{index + 1}. #{user[:username]} - Avance promedio: #{user[:average_progress]}" %></p>
+<% end %>
+
+<%= current_user.username %>
+
+<%= link_to "Back", group_path(@group)%>

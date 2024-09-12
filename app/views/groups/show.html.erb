@@ -10,13 +10,33 @@
       <% @members.each do |member| %>
         <% progress = Progress.find_by(member_id: member.id, task_id: task.id) %>
         <p>
-          <%= User.find(member.user_id).username %>: 
-          <%= progress.present? ? "#{progress.completion.round(2)}%" : "No progress available" %>
+          <%= User.find(member.user_id).username %>:
+          <%= progress.present? ? (link_to "#{progress.completion.round(2)}%", edit_progress_path(progress.id)) : "No progress available" %>
         </p>
       <% end %>
   <% end %>
 <% else %>
     <p>No tasks available</p>
 <% end %>
+
+<hr>
+<div class="container border mx-2">
+  <div class="row">
+    <div class="col-6">
+      <%= link_to "Your Rewards", group_rewards_path(@group) %>
+      <h2>Rewards</h2>
+      <% @group.rewards.each do  |reward| %>
+        <p><%= reward.name %></p>
+      <% end %>
+    </div>
+    <div class="col-6">
+      <h2>Punishments</h2>
+      <% @group.punishments.each do  |punishment| %>
+        <p><%= punishment.name %></p>
+      <% end %>
+    </div>
+  </div>
+
+</div>
 
 <%= link_to "Back", groups_path %>
