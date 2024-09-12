@@ -1,11 +1,39 @@
-<h1>Your rewards are</h1>
+<h1>Your in the poss <%= @my_index  %></h1>
 
-div.container>div.row>
+<div class="container">
+
+
+</div>
 
 <% @sorted_positions.each_with_index do |user, index| %>
 <p><%= "#{index + 1}. #{user[:username]} - Avance promedio: #{user[:average_progress]}" %></p>
 <% end %>
 
+
+<br>
+<%= @tasks.size %>
+<br>
 <%= current_user.username %>
+<br>
 
 <%= link_to "Back", group_path(@group)%>
+
+
+
+<hr>
+<br>
+<h2>Table user, progress and tasks</h2>
+<div class="container">
+  <%= render 'table_generator', data: @progress %>
+</div>
+
+
+
+
+<hr>
+<br>
+
+<h2>Table tasks list</h2>
+<div class="container">
+  <%= render 'table_generator', data: @tasks %>
+</div>
