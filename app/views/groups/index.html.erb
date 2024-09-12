@@ -1,11 +1,25 @@
 <h1>All groups here</h1>
+<div class="container-groups">
 <% @user_groups.each do |group| %>
+  <div class="only-group">
   <%= group.name %>
   <%= link_to group.name, group_path(group.id)%>
-    <%= link_to "Delete Group",
-    group_path(group.id),
-    data: {turbo_method: :delete,
-    turbo_confirm: "Are you sure?"} %>
+
+  <% if Member.find_by(user_id: current_user.id, group_id: group.id ).admin %>
+    <%= link_to "Delete",
+      group_path(group.id),
+      data: {turbo_method: :delete,
+      turbo_confirm: "Are you sure?"},
+      class: "delete-button" %>
+  <% end %>
+
     <%= link_to "Edit Group", edit_group_path(group.id) %>
+  </div>
 <% end %>
+</div>
+<br>
 <%= link_to "Create Group", new_group_path %>
+<br>
+<button class="button-delete-group" data-controller="toogle-delete-group" data-action="click->toogle-delete-group#showButtonsDeletes">
+  DELETE GROUP
+</button>
