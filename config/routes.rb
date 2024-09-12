@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :groups do
     resources :members, only: [:create]
+    resources :tasks, only: [:new, :create]
   end
 
   resources :progresses, only: [:edit, :update]
