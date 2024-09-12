@@ -40,7 +40,7 @@ class GroupsController < ApplicationController
         end
       end
 
-      redirect_to @group, notice: "ESSOOO"
+      redirect_to group_path(@group.id), notice: "ESSOOO"
     else
       render :new, status: :unprocessable_entity
     end

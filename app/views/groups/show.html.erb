@@ -36,6 +36,18 @@
         <p><%= reward.name %></p>
       <% end %>
     </div>
+
+    <!-- POPUP REWARDS -->
+    <div data-controller="add-group-reward">
+      <button data-action="click->add-group-reward#addReward" class="btn btn-primary">Add Task</button>
+      <div data-add-group-reward-target="togglableElement" class="d-none">
+        <%= render "shared/addnewreward", task: @task %>
+      </div>
+  </div>
+
+
+
+    <!-- POPUP PUNISHMENT -->
     <div class="col-6">
       <h2>Punishments</h2>
       <% @group.punishments.each do  |punishment| %>

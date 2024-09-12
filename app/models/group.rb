@@ -9,7 +9,7 @@ class Group < ApplicationRecord
   accepts_nested_attributes_for :punishments, allow_destroy: true
   accepts_nested_attributes_for :rewards, allow_destroy: true
 
-  validates :name, uniqueness: true, presence: true
+  validates :name, presence: true
 end
 
-# :members, allow_destroy: true
+# :members, allow_destroy: true, uniqueness: true
