@@ -18,13 +18,15 @@
 
       <!-- Cuerpo del Modal -->
       <div class="modal-body">
-        <%= "http://[::1]:3000/groups/#{@group.id}" %>
+        <span id="linkToCopy">
+          <%= "http://[::1]:3000/groups/#{@group.id}" %>
+        </span>
       </div>
 
       <!-- Footer del Modal -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">go back</button>
-        <button type="button" class="btn btn-primary">Copy link</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Go back</button>
+        <button data-controller="toggle-copy-link" data-action="click->toggle-copy-link#copyLink" type="button" class="btn btn-primary">Copy link</button>
       </div>
     </div>
   </div>
