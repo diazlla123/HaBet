@@ -1,6 +1,5 @@
 <div data-controller="group-member" data-group-member-group-id-value="<%= @group.id %>">
   <h1><%= @group.name %></h1>
-  <%= link_to "Back", groups_path %>
   <%= render 'shared/linkShare' %>
 </div>
 
@@ -10,11 +9,19 @@
       <% @members.each do |member| %>
         <% progress = Progress.find_by(member_id: member.id, task_id: task.id) %>
         <p>
-          <%= User.find(member.user_id).username %>: 
+          <%= User.find(member.user_id).username %>:
           <%= progress.present? ? "#{progress.completion.round(2)}%" : "No progress available" %>
         </p>
       <% end %>
   <% end %>
+  <div data-controller="add-group-task">
+      <button data-action="click->add-group-task#addTask" class="btn btn-primary">Add Task</button>
+      <div data-add-group-task-target="togglableElement" class="d-none">
+        <%= render "shared/addnewtask", task: @task %>
+      </div>
+  </div>
+
+  </div>
 <% else %>
     <p>No tasks available</p>
 <% end %>

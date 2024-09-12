@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     resources :members, only: [:create]
   end
 
+  resources :groups, only: [:show] do
+    resources :tasks, only: [:new, :create]
+  end
   # Defines the root path route ("/")
   # root "posts#index"
 end

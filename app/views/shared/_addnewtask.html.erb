@@ -1,0 +1,9 @@
+<h3>New Task</h3>
+<%= simple_form_for [@group, @task] do |t| %>
+  <%= t.input :name, required: true, placeholder: "Enter task name" %>
+  <%= t.input :unit, required: true, collection: ["unit1", "unit2", "unit3"], include_blank: "Select unit type" %> <!-- Dropdown menu -->
+  <%= t.input :quantity, required: true, placeholder: "Enter a number" %>
+  <%= t.hidden_field :group_id, value: @group.id %>
+
+  <%= t.submit "Create Task" %>
+<% end %>
