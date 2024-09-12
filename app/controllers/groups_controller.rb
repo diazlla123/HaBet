@@ -10,7 +10,8 @@ class GroupsController < ApplicationController
     @members = Member.where(group: @group)
     @users = User.joins(:members).where(members: { group_id: @group })
     # @tasks = Task.where(group: @group)
-    @tasks = @group.tasks
+    @tasks = @group.tasks if @group.tasks.present?
+    @task = Task.new
     # For progresses, we're going to find each progress in the view directly
   end
 

@@ -5,5 +5,5 @@ class Member < ApplicationRecord
 
   # validates :user_id, uniqueness: true
   # validates :group_id, uniqueness: true
-  validates :user_id, uniqueness: { scope: :group_id, message: "ya está en este grupo" }
+  validates :user_id, uniqueness: { scope: :group_id, message: "Already in group" }
 end

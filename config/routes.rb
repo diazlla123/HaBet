@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   resources :groups do
     resources :members, only: [:create]
     resources :rewards, only: [:index]
+    resources :tasks, only: [:new, :create]
   end
 
+  resources :progresses, only: [:edit, :update]
   # Defines the root path route ("/")
   # root "posts#index"
 end
