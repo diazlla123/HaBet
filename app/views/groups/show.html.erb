@@ -11,6 +11,11 @@
         <p>
           <%= User.find(member.user_id).username %>:
           <%= progress.present? ? (link_to "#{progress.completion.round(2)}%", edit_progress_path(progress.id)) : "No progress available" %>
+          <% if progress.completion.round(2) >= 100.00 %>
+            <i class="fa-solid fa-check"></i>
+          <% else %>
+            <i class="fa-solid fa-xmark"></i>
+          <% end %>
         </p>
       <% end %>
   <% end %>
@@ -47,5 +52,3 @@
 </div>
 
 <%= link_to "Back", groups_path %>
-
-<% console %>

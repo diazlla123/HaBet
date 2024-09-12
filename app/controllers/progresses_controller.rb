@@ -6,7 +6,7 @@ class ProgressesController < ApplicationController
   def update
     @progress = Progress.find(params[:id])
     current_quantity = Task.find(@progress.task_id).quantity * (@progress.completion/100)
-    change = params[:new_progress].to_i
+    change = params[:new_progress].to_f
     new_quantity = current_quantity + change
     new_completion = (new_quantity / Task.find(@progress.task_id).quantity) * 100
     @progress.update(completion: new_completion)
