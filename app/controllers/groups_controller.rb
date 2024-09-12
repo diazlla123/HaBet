@@ -12,6 +12,8 @@ class GroupsController < ApplicationController
     # @tasks = Task.where(group: @group)
     @tasks = @group.tasks if @group.tasks.present?
     @task = Task.new
+    @reward = Reward.new
+    @punishment = Punishment.new
     # For progresses, we're going to find each progress in the view directly
   end
 
@@ -40,7 +42,7 @@ class GroupsController < ApplicationController
         end
       end
 
-      redirect_to @group, notice: "ESSOOO"
+      redirect_to group_path(@group.id), notice: "ESSOOO"
     else
       render :new, status: :unprocessable_entity
     end

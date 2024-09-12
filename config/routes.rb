@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :groups do
     resources :members, only: [:create]
     resources :rewards, only: [:index]
+    resources :punishments, only: [:index]
     resources :tasks, only: [:new, :create]
   end
 

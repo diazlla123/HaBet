@@ -1,0 +1,7 @@
+<h3>New Reward</h3>
+  <%= simple_form_for [@group, @reward] do |r| %>
+    <%= r.input :name, required: true, placeholder: "Enter reward name" %>
+    <%= r.hidden_field :group_id, value: @group.id %>
+
+    <%= r.submit "Create Task" %>
+  <% end %>
