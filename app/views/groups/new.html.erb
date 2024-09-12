@@ -1,3 +1,4 @@
+<section class="section-new-group">
 <h1>New Group</h1>
 
 <%= simple_form_for @group do |f| %>
@@ -20,7 +21,8 @@
     <%= p.input :name, required: true, placeholder: "Enter punishment name" %>
   <% end %>
 
-  <%= f.submit "Create Group" %>
+  <%= f.submit "Create Group", class:"drk-button"%>
 <% end %>
 
 <%= link_to "Back", groups_path %>
+</section>
