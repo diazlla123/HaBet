@@ -1,52 +1,40 @@
-<h2>Sign up</h2>
+<h2 class="form-title">Sign up</h2>
 
-<div class="container-sm border border-primary mb-4 w-75 p-2">
-  <h1>HaBet</h1>
-  <p>Go further together</p>
-</div>
+<h1 class="form-title">HaBet</h1>
+<p class="form-subtitle">Go further together</p>
 
-<div class="container-sm border border-primary w-75 px-2 py-4">
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+<div class="container-sm form-container">
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "simple_form" }) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
       <%= f.input :username,
-                  require: true,
-                  autofocus: true,
-                  input_html: { autocomplete: "username", placeholder: "JohnDoe" } %>
-      <%= f.input :first_name,
-                  require: true,
-                  autofocus: true,
-                  input_html: { autocomplete: "first_name", placeholder: "John" } %>
-      <%= f.input :last_name,
-                  require: true,
-                  autofocus: true,
-                  input_html: { autocomplete: "last_name", placeholder: "Doe" } %>
-      <%= f.input :genre,
-                  autofocus: true,
-                  input_html: {autocomplete: "genre", placeholder: "Enter your genre"} %>
-      <%= f.input :birth_date,
-                  autofocus: true %>
-      <%= f.input :email,
                   required: true,
                   autofocus: true,
-                  input_html: { autocomplete: "email", placeholder: "Enter your email" } %>
+                  input_html: { autocomplete: "username", placeholder: "JohnDoe", class: "form-control" } %>
+      <%= f.input :first_name,
+                  required: true,
+                  input_html: { autocomplete: "first_name", placeholder: "John", class: "form-control" } %>
+      <%= f.input :last_name,
+                  required: true,
+                  input_html: { autocomplete: "last_name", placeholder: "Doe", class: "form-control" } %>
+      <%= f.input :email,
+                  required: true,
+                  input_html: { autocomplete: "email", placeholder: "Enter your email", class: "form-control" } %>
       <%= f.input :password,
                   required: true,
                   hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                  input_html: { autocomplete: "new-password", placeholder: "Enter your password" } %>
+                  input_html: { autocomplete: "new-password", placeholder: "Enter your password", class: "form-control" } %>
       <%= f.input :password_confirmation,
                   required: true,
-                  input_html: { autocomplete: "new-password", placeholder: "Confirm your password" } %>
+                  input_html: { autocomplete: "new-password", placeholder: "Confirm your password", class: "form-control" } %>
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
+      <%= f.button :submit, "Sign up", class: "btn btn-submit" %>
     </div>
   <% end %>
-
 </div>
-
-
 
 <%= render "devise/shared/links" %>
