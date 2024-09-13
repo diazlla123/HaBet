@@ -45,4 +45,10 @@ class RankingCalculation
     user_rank ? user_rank[:rank] : nil
   end
 
+  def self.group_with_avances(user_id)
+    Group.left_joins(:tasks, :members => :progresses)
+     .select('groups.id AS id, groups.name AS name, COUNT(DISTINCT tasks.id) AS number_of_tasks, COUNT(DISTINCT members.id) AS number_of_members, SUM(progresses.completion) AS total_completion, (SUM(progresses.completion) / (COUNT(DISTINCT tasks.id) * COUNT(DISTINCT members.id))) AS avg_completion_per_task_member')
+     .group('groups.id, groups.name').having('SUM(CASE WHEN members.user_id = ? THEN 1 ELSE 0 END) > 0', user_id)
+  end
+
 end

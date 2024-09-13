@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @user_groups = Group.joins(:members).where(members: { user_id: current_user })
+    @user_groups = RankingCalculation.group_with_avances(current_user.id)
   end
 
   def show
