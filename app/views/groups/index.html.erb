@@ -12,7 +12,14 @@
           <%= image_tag("fotox.webp", class: "picture-profile-group") %>
           <div class="name-group-description">
             <h3><%= group.name %></h3>
-            <p>Progress:</p> 
+            <p>Progress:</p>
+
+            <div class="progress w-100" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar" style="width: <%= group.avg_completion_per_task_member %>%">
+                  <%= group.avg_completion_per_task_member %>
+              </div>
+            </div>
+
           </div>
         <% end %>
         
@@ -35,10 +42,10 @@
 
   <%# link_to "Edit Group", edit_group_path(group.id) %>
 
-  <br>
-  <%= link_to "Create Group", new_group_path %>
-  <br>
-  <button class="button-delete-group" data-controller="toogle-delete-group" data-action="click->toogle-delete-group#showButtonsDeletes">
-    DELETE GROUP
-  </button>
+  <div class="buttons-index-groups">
+    <%= link_to "Create Group", new_group_path, class: "create-group-index" %>
+    <button class="button-delete-group-toogle" data-controller="toogle-delete-group" data-action="click->toogle-delete-group#showButtonsDeletes">
+      Delete Group
+    </button>
+  </div>
 </section>
