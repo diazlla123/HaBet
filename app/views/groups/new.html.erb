@@ -1,24 +1,46 @@
 <section class="section-new-group">
-<h1>New Group</h1>
+
+<div class="top">
+<div class="section__title--groups">
+  <div class="line-groups"></div>
+    <h2 class="section__h2--groups">New Group</h2>
+  <div class="line-groups"></div>
+</div>
+</div>
+
 
 <%= simple_form_for @group do |f| %>
-  <%= f.input :name, required: true, placeholder: "Enter a name" %>
+  <div class="row col-12">
+      <%= f.input :name, required: true, input_html: { placeholder: 'Group Name', class: 'center-placeholder' }, label: false %>
+  </div>
 
   <h3>Tasks</h3>
   <%= f.fields_for :tasks do |t| %>
-    <%= t.input :name, required: true, placeholder: "Enter task name" %>
-    <%= t.input :unit, required: true, collection: ["unit1", "unit2", "unit3"], include_blank: "Select unit type" %> <!-- Dropdown menu -->
-    <%= t.input :quantity, required: true, placeholder: "Enter a number" %>
+    <div class="row">
+      <div class="col-8">
+        <%= t.input :name, required: true, input_html: { placeholder: 'Run', class: 'center-placeholder' }, label: false %>
+      </div>
+      <div class="col-2" id="quantity">
+      <%= t.input :quantity, required: true, input_html: { placeholder: '10', class: 'center-placeholder' }, label: false %>
+      </div>
+      <div class="col-2">
+      <%= t.input :unit, required: true, input_html: { placeholder: 'Km', class: 'center-placeholder',  }, label: false %>
+      </div>
+    </div> <!-- Dropdown menu -->
   <% end %>
 
   <h3>Rewards</h3>
   <%= f.fields_for :rewards do |r| %>
-    <%= r.input :name, required: true, placeholder: "Enter reward name" %>
+    <div class="row col-12">
+      <%= r.input :name, required: true, input_html: { placeholder: 'Reward for first place', class: 'center-placeholder' }, label: false %>
+    </div>
   <% end %>
 
-  <h3>Punishments</h3>
+  <h3>Sanctions</h3>
   <%= f.fields_for :punishments do |p| %>
-    <%= p.input :name, required: true, placeholder: "Enter punishment name" %>
+    <div class="row col-12">
+      <%= p.input :name, required: true, input_html: { placeholder: 'Sanction for last place', class: 'center-placeholder' }, label: false %>
+    </div>
   <% end %>
 
   <%= f.submit "Create Group", class:"drk-button"%>
