@@ -10,20 +10,20 @@
   text-decoration: none;
   text-align: center;
   transition: all 0.3s ease;
+
+  &:hover{
+    transform: scale(1.1);
+  }
+
+  &:active{
+    transform: scale(1);
+  }
 }
 .create-group-index{
-  background-color: #00a184;
+  background-color: #04ad9e;
   color: white;
-
-  &:hover{
-    transform: scale(1.1);
-  }
 }
 .button-delete-group-toogle{
-  background-color: #008377;
+  background-color: #00967a;
   color: white;
-
-  &:hover{
-    transform: scale(1.1);
-  }
 }

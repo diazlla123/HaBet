@@ -12,7 +12,14 @@
           <%= image_tag("fotox.webp", class: "picture-profile-group") %>
           <div class="name-group-description">
             <h3><%= group.name %></h3>
-            <p>Progress:</p> 
+            <p>Progress:</p>
+
+            <div class="progress w-100" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar" style="width: <%= group.avg_completion_per_task_member %>%">
+                  <%= group.avg_completion_per_task_member %>
+              </div>
+            </div>
+
           </div>
         <% end %>
         
