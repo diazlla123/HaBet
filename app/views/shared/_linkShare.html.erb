@@ -1,33 +1,39 @@
-<!-- Botón que activa el modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  <i class="fa-solid fa-share-nodes"></i>
-</button>
+<span class="button-share-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Share
+      <svg class="icon-share-link" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-share-2">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M8 9h-1a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-8a2 2 0 0 0 -2 -2h-1" />
+        <path d="M12 14v-11" />
+        <path d="M9 6l3 -3l3 3" />
+      </svg>
+</span>
 
-<!-- Estructura del Modal -->
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
+  <div class="modal-dialog modal-share-link-group">
+    <div class="modal-content modal-contenido">
+      
+      <div class="header-modal-show-group">
+        <h2 class="form-title">HaBet</h2>
+        <p class="form-subtitle">Go further together</p>
+      </div>
 
-        <!-- Header del Modal -->
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-            <%= @group.name %>
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+      <div class="title-group-show-modal">
+        <div class="line-groups"></div>
+        <h3 class="modal-title-show-group" id="exampleModalLabel">
+          <%= @group.name %>
+        </h3>
+        <div class="line-groups"></div>
+      </div>
 
-      <!-- Cuerpo del Modal -->
-      <div class="modal-body">
+      <div class="share-show-group-links">
         <span id="linkToCopy">
           <%= "http://[::1]:3000/groups/#{@group.id}" %>
         </span>
+        <button data-controller="toggle-copy-link" data-action="click->toggle-copy-link#copyLink" type="button" class="btn btn-primary corpy-link-button-show-group">Copy link</button>
+        <button type="button" class="btn btn-secondary go-back-button-show-group" data-bs-dismiss="modal">Go back</button>
       </div>
 
-      <!-- Footer del Modal -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Go back</button>
-        <button data-controller="toggle-copy-link" data-action="click->toggle-copy-link#copyLink" type="button" class="btn btn-primary">Copy link</button>
-      </div>
     </div>
   </div>
 </div>
