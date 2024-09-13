@@ -6,7 +6,7 @@
       <div class="line-groups"></div>
     </div>
 
-    <!-- Main Card -->
+   
     <div class="w-100 m-0 p-1">
 
       <div class="row mb-2 w-100">
@@ -33,10 +33,11 @@
 
                     <p class="my-0"><%= index + 1 %> Place!</p>
                     <div class="progress my-0">
-                      <div class="progress-bar" role="progressbar" style="width: <%= user[:average_progress]*100 %>%">
-                          <%= user[:average_progress]*100 %>%
+                      <div class="progress-bar" role="progressbar" style="width: <%= user[:average_progress]*100.round(2) %>%">
+                        <%= (user[:average_progress]*100).round(2) %>%
                       </div>
                     </div>
+
 
                 </div>
               </div>
@@ -53,3 +54,4 @@
     </div>
   </div>
 </section>
+<%= console %>
