@@ -53,5 +53,15 @@
   align-items: center;
   gap: 1rem;
 }
+.buttons-index-groups{
+  width: 100%;
+  height: 3rem;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+@import "../components/indexGroups/buttonsIndex/buttonsIndex";
 @import "../components/indexGroups/cardGroup"

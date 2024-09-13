@@ -35,10 +35,10 @@
 
   <%# link_to "Edit Group", edit_group_path(group.id) %>
 
-  <br>
-  <%= link_to "Create Group", new_group_path %>
-  <br>
-  <button class="button-delete-group" data-controller="toogle-delete-group" data-action="click->toogle-delete-group#showButtonsDeletes">
-    DELETE GROUP
-  </button>
+  <div class="buttons-index-groups">
+    <%= link_to "Create Group", new_group_path, class: "create-group-index" %>
+    <button class="button-delete-group-toogle" data-controller="toogle-delete-group" data-action="click->toogle-delete-group#showButtonsDeletes">
+      Delete Group
+    </button>
+  </div>
 </section>

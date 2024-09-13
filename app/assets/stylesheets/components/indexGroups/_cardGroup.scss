@@ -46,3 +46,10 @@
     font-size: 1em;
   }
 }
+
+@media (min-width: 576px) {
+  .card-group {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+}
