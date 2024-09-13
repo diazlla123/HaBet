@@ -20,6 +20,11 @@ class MembersController < ApplicationController
     ranking_calculation = RankingCalculation.new(@tasks, params[:group_id])
     @progress = ranking_calculation.progress
     @sorted_positions = ranking_calculation.position_table
-    
+
+  end
+
+  def show
+    @user = User.find(current_user.id)
+    @tasks = Task.joins(group: :members).where(members: { user_id: current_user.id })
   end
 end
