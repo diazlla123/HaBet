@@ -39,7 +39,6 @@ class RankingCalculation
 
   end
 
-
   def my_index(username)
     user_rank = position_table.find { |user| user[:username] == username }
     user_rank ? user_rank[:rank] : nil
