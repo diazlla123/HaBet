@@ -1,0 +1,57 @@
+.section-index-groups{
+  width: 100%;
+  height: auto;
+  
+  padding: 0rem 1rem;
+  padding-top: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.section__title--groups{
+  width: inherit;
+  height: 3rem;
+
+  margin-bottom: 1rem;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  &::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000000;
+    z-index: -1;
+  }
+
+  .line-groups{
+    flex-grow: 1;
+    height: 2px;
+    background-color: #000000;
+  }
+
+  .section__h2--groups{
+    padding: 0rem 0.5rem;
+    margin: 0;
+  }
+}
+.container-groups{
+  width: inherit;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+@import "../components/indexGroups/cardGroup"
