@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   end
 
   resources :progresses, only: [:edit, :update]
+  resources :members, only: [:show]
+
   # Defines the root path route ("/")
   # root "posts#index"
 end
