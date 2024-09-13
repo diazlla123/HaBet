@@ -1,0 +1,28 @@
+.membercard{
+  display: flex;
+  align-items: left;
+  border-radius: 5px;
+  border: solid #054d4a;
+  padding: 10px;
+  background-color: #d0d0d0;
+  margin-bottom: 20px;
+}
+
+.members-avatar {
+  font-size: 25px;
+}
+
+
+.members-close{
+  width: 20px;
+  text-align:right;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 0px;
+  padding: 0px;
+}
+
+
+.card-member-name{
+  font-weight: bold;
+}
