@@ -1,25 +1,44 @@
-<h1>All groups here</h1>
-<div class="container-groups">
-<% @user_groups.each do |group| %>
-  <div class="only-group">
-  <%= group.name %>
-  <%= link_to group.name, group_path(group.id)%>
-
-  <% if Member.find_by(user_id: current_user.id, group_id: group.id ).admin %>
-    <%= link_to "Delete",
-      group_path(group.id),
-      data: {turbo_method: :delete,
-      turbo_confirm: "Are you sure?"},
-      class: "delete-button" %>
-  <% end %>
-
-    <%= link_to "Edit Group", edit_group_path(group.id) %>
+<section class="section-index-groups">
+  <div class="section__title--groups">
+    <div class="line-groups"></div>
+      <h2 class="section__h2--groups">Your groups</h2>
+    <div class="line-groups"></div>
   </div>
-<% end %>
-</div>
-<br>
-<%= link_to "Create Group", new_group_path %>
-<br>
-<button class="button-delete-group" data-controller="toogle-delete-group" data-action="click->toogle-delete-group#showButtonsDeletes">
-  DELETE GROUP
-</button>
+
+  <div class="container-groups">
+    <% @user_groups.each do |group| %>
+      <div class="card-group">
+        <%= link_to group_path(group.id), class: "card-group-title" do %>
+          <%= image_tag("fotox.webp", class: "picture-profile-group") %>
+          <div class="name-group-description">
+            <h3><%= group.name %></h3>
+            <p>Progress:</p> 
+          </div>
+        <% end %>
+        
+        <div class="button-delete-group">
+          <% if Member.find_by(user_id: current_user.id, group_id: group.id ).admin %>
+            <%= link_to group_path(group.id),
+                        data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                        class: "delete-button" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-square-x">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z" />
+                <path d="M9 9l6 6m0 -6l-6 6" />
+              </svg>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%# link_to "Edit Group", edit_group_path(group.id) %>
+
+  <br>
+  <%= link_to "Create Group", new_group_path %>
+  <br>
+  <button class="button-delete-group" data-controller="toogle-delete-group" data-action="click->toogle-delete-group#showButtonsDeletes">
+    DELETE GROUP
+  </button>
+</section>
