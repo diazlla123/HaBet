@@ -1,0 +1,12 @@
+#tabbar-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #f5f5f5;
+  border-top: 2px solid #054d4a;
+  display: flex;
+  justify-content: space-around;
+}
+
