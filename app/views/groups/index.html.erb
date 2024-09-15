@@ -12,10 +12,11 @@
           <%= image_tag("fotox.webp", class: "picture-profile-group") %>
           <div class="name-group-description">
             <h3><%= group.name %></h3>
-            <p>Progress:</p> 
+            <p>Progress:</p>
+            <%= link_to "Messages", group_messages_path(group.id) %>
           </div>
         <% end %>
-        
+
         <div class="button-delete-group">
           <% if Member.find_by(user_id: current_user.id, group_id: group.id ).admin %>
             <%= link_to group_path(group.id),
@@ -42,3 +43,4 @@
     DELETE GROUP
   </button>
 </section>
+<% console %>
