@@ -145,7 +145,7 @@
 
       <!-- POPUP REWARDS -->
     <div data-controller="add-group-reward">
-        <button data-action="click->add-group-reward#addReward" class="btn btn-primary">Add Reward</button>
+        <button data-action="click->add-group-reward#addReward" class="btn btn-primary">Change Reward</button>
         <div data-add-group-reward-target="togglableElement" class="d-none">
           <%= render "shared/addnewreward", reward: @reward %>
         </div>
@@ -162,7 +162,7 @@
 
         <!-- POPUP PUNISHMENT -->
     <div data-controller="add-group-punishment">
-        <button data-action="click->add-group-punishment#addPunishment" class="btn btn-primary">Add Punishment</button>
+        <button data-action="click->add-group-punishment#addPunishment" class="btn btn-primary">Change Punishment</button>
         <div data-add-group-punishment-target="togglableElement" class="d-none">
           <%= render "shared/addnewpunishment", punishment: @punishment %>
         </div>
@@ -174,4 +174,3 @@
 
 
 </section>
-<% console %>

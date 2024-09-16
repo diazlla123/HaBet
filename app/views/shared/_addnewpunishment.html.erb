@@ -1,6 +1,6 @@
 <h3>New Punishment</h3>
-<%= simple_form_for [@group, @punishment] do |p| %>
+<%= simple_form_for [@group, @punishment], url: group_punishment_path(@group, @group.punishments[0].id), method: :patch do |p| %>
   <%= p.input :name, required: true, placeholder: "Enter punishment name" %>
   <%= p.hidden_field :group_id, value: @group.id %>
-  <%= p.submit "Add new punishment" %>
+  <%= p.submit "Change punishment" %>
 <% end %>
