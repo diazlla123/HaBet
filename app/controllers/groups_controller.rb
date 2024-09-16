@@ -19,6 +19,7 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+    @task = Task.new
     @group.tasks.build if @group.tasks.empty?
     @group.rewards.build if @group.rewards.empty?
     @group.punishments.build if @group.punishments.empty?
@@ -51,6 +52,7 @@ class GroupsController < ApplicationController
   def destroy
     @group = Group.find(params[:id])
     @group.destroy
+    redirect_to groups_path
   end
 
   def edit

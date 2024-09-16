@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :rewards, only: [:index]
     resources :punishments, only: [:index]
     resources :tasks, only: [:new, :create]
+    resources :messages, only: [:index, :create]
   end
 
   resources :progresses, only: [:edit, :update]

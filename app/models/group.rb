@@ -4,6 +4,7 @@ class Group < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :rewards, dependent: :destroy
   has_many :punishments, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   accepts_nested_attributes_for :tasks, allow_destroy: true
   accepts_nested_attributes_for :punishments, allow_destroy: true

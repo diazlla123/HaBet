@@ -14,6 +14,8 @@
             <h3><%= group.name %></h3>
             <p>Progress:</p>
 
+            <%= link_to "Messages", group_messages_path(group.id) %>
+
             <div class="progress w-100" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
               <div class="progress-bar" style="width: <%= group.avg_completion_per_task_member %>%">
                   <%= group.avg_completion_per_task_member %>
@@ -22,7 +24,7 @@
 
           </div>
         <% end %>
-        
+
         <div class="button-delete-group">
           <% if Member.find_by(user_id: current_user.id, group_id: group.id ).admin %>
             <%= link_to group_path(group.id),
