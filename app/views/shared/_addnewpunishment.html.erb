@@ -2,6 +2,5 @@
 <%= simple_form_for [@group, @punishment] do |p| %>
   <%= p.input :name, required: true, placeholder: "Enter punishment name" %>
   <%= p.hidden_field :group_id, value: @group.id %>
-  <%= p.submit "Create Punishment" %>
+  <%= p.submit "Add new punishment" %>
 <% end %>
-
