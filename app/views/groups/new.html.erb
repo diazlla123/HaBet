@@ -20,7 +20,7 @@
       <div data-controller="new-task">
         <div data-new-task-target="taskForm">
           <%= f.fields_for :tasks do |t| %>
-            <div class="w-100 task-form" style="position: relative;">
+            <div class="w-100 task-form" >
               <div class="row col-12" >
                 <div class="col-8">
                   <%= t.input :name, required: true, input_html: { placeholder: 'Run', class: 'center-placeholder' }, label: false %>
@@ -37,7 +37,7 @@
                 <div class="col-2">
                   <%= t.input :unit, required: true, input_html: { placeholder: 'Km', class: 'center-placeholder',  }, label: false %>
                 </div>
-                <button class="p-2 mt-1 me-2 btn d-none" style="position: absolute; top: 0; right: 0px; width: 30px; background-color: white"
+                <button class="p-2 mt-1 me-2 btn d-none trash-new-task"
                         data-new-task-target="deleteTask" data-action="click->new-task#removeTask">
                   <i class="fa-solid fa-trash"></i>
                 </button>

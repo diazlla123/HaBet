@@ -38,10 +38,14 @@ class MembersController < ApplicationController
     # 1. Delete the member
     @member = Member.find(params[:id])
     group = @member.group
-
+    is_current_user = @member.user_id == current_user.id
     # 2. Delete the  member along their progresse because it have dependen destroy
     @member.destroy
     # 3. Redireccionar a la misma vista
-    redirect_to group_members_path(group)
+    if is_current_user
+      redirect_to groups_path
+    else
+      redirect_to group_members_path(group)
+    end
   end
 end
