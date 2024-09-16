@@ -1,0 +1,50 @@
+.new-task {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+#new_task {
+  width: 100%;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.new-task-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task_name {
+  width: 60%;
+}
+
+.task_quantity, .task_unit {
+  width: 20%;
+}
+
+#task-name {
+  display: flex;
+  flex-grow: 3;
+  border-radius: 0.5rem;
+}
+
+#task-quantity {
+  display: flex;
+  flex-grow: 1;
+  border-radius: 0.5rem;
+}
+
+#task-unit {
+  display: flex;
+  flex-grow: 1;
+  border-radius: 0.5rem;
+}
+
+#new-task-button {
+  width: 100%;
+  border-radius: 0.5rem;
+}
