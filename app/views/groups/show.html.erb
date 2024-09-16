@@ -45,7 +45,7 @@
                       <%= User.find(member.user_id).username %>
                     </div>
 
-
+                      <% if progress.member.user.id == current_user.id %>
                     <div class="col-7">
 
                       <div class="progress" data-action="click->edit-progress#toggle">
@@ -57,16 +57,27 @@
                     </div>
 
                     <div class="col-1" data-action="click->edit-progress#toggle">
-                      <% if progress.present? %>
-                        <% if progress.completion.round(2) >= 100.00 %>
-                          <i class="fa-solid fa-check"></i>
-                        <% else %>
-                          <i class="fa-solid fa-pen-to-square"></i>
+                        <% if progress.present? %>
+                          <% if progress.completion.round(2) >= 100.00 %>
+                            <i class="fa-solid fa-check"></i>
+                          <% else %>
+                            <i class="fa-solid fa-pen-to-square"></i>
+                          <% end %>
                         <% end %>
-                      <% end %>
+
+                    </div>
+                      <% else %>
+                      <div class="col-7">
+
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: <%= progress.completion.round(2) %>%">
+                          <%= progress.completion.round(2) %>
+                        </div>
+                      </div>
 
                     </div>
 
+                      <% end %>
 
 
 
