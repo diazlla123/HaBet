@@ -1,15 +1,25 @@
-<h1> Your Group Discussion </h1>
-<%= turbo_stream_from "group_#{@group.id}_messages" %>
-<div id="messages" class="messages">
-  <% @messages.each do |message| %>
-    <%= render "messages/message", message: message %>
-  <% end %>
-</div>
-<br>
+<section>
+  <div class="chat-title">
+    <div class="line-groups"></div>
+      <h2 class="section__h2--groups"><%= "#{@group.name}'s discussion" %></h2>
+    <div class="line-groups"></div>
+  </div>
 
+<div class="chat">
+  <%= turbo_stream_from "group_#{@group.id}_messages" %>
+  <div id="messages" class="message">
+    <% @messages.each do |message| %>
+      <%= render "messages/message", message: message, current_user_id: current_user.id %>
+    <% end %>
+  </div>
+</div>
+
+<div class="send">
 <%= form_with(model: [@group, @message], url: group_messages_path(@group)) do |f| %>
-  <%= f.label :content %><br>
-  <%= f.text_field :content %><br>
-  <%= f.submit "Send" %>
+  <div class="send-wrapper">
+  <%= f.text_field :content, placeholder: "Message", class:"message-field" %>
+  <%= f.submit "Send", class:"send-button" %>
+  </div>
 <% end %>
-<% console %>
+</div>
+</section>

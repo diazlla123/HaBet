@@ -11,6 +11,6 @@ class Message < ApplicationRecord
   def broadcast_message
     broadcast_append_to "group_#{group.id}_messages",
                         partial: "messages/message",
-                        locals: { message:self }
+                        locals: { message:self, current_user_id: member.id }
   end
 end
