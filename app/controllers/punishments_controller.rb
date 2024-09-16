@@ -26,5 +26,21 @@ class PunishmentsController < ApplicationController
     @group = Group.find(params[:group_id])
     @group.rewards
   end
-  
+
+  def update
+    @group = Group.find(params[:id])
+    @punishment = @group.punishments.find(params[:id])
+    if @punishment.update(punishment_params)
+      redirect_to group_path(@group), notice: "Punishment updated"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def punishment_params
+    params.require(:punishment).permit(:name)
+  end
+
 end

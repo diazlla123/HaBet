@@ -24,5 +24,20 @@ class RewardsController < ApplicationController
 
   end
 
+  def update
+    @group = Group.find(params[:id])
+    @reward = @group.rewards.find(params[:id])
+    if @reward.update(reward_params)
+      redirect_to group_path(@group), notice: "Reward updated"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def reward_params
+    params.require(:reward).permit(:name)
+  end
 
 end
