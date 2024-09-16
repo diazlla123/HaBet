@@ -1,60 +1,89 @@
 <section class="section-new-group">
 
-<div class="top">
-<div class="section__title--groups">
-  <div class="line-groups"></div>
-    <h2 class="section__h2--groups">New Group</h2>
-  <div class="line-groups"></div>
-</div>
-</div>
+  <div class="top">
 
-
-<%= simple_form_for @group do |f| %>
-  <div class="row col-12">
-      <%= f.input :name, required: true, input_html: { placeholder: 'Group Name', class: 'center-placeholder' }, label: false %>
+    <div class="section__title--groups">
+      <div class="line-groups"></div>
+        <h2 class="section__h2--groups">New Group</h2>
+      <div class="line-groups"></div>
+    </div>
   </div>
 
-  <h3>Tasks</h3>
-  <div data-controller="new-task">
-    <div data-new-task-target="taskForm">
-      <%= f.fields_for :tasks do |t| %>
-        <div class="row">
-          <div class="col-8">
-            <%= t.input :name, required: true, input_html: { placeholder: 'Run', class: 'center-placeholder' }, label: false %>
+
+  <%= simple_form_for @group do |f| %>
+    <div class="row col-12 mb-2">
+      <%= f.input :name, required: true, input_html: { placeholder: 'Group Name', class: 'center-placeholder' }, label: false %>
+    </div>
+
+    <div class="mt-2 mb-2 w-10">
+      <h3>Tasks</h3>
+      <div data-controller="new-task">
+        <div data-new-task-target="taskForm">
+          <%= f.fields_for :tasks do |t| %>
+            <div class="w-100 task-form" style="position: relative;">
+              <div class="row col-12" >
+                <div class="col-8">
+                  <%= t.input :name, required: true, input_html: { placeholder: 'Run', class: 'center-placeholder' }, label: false %>
+                </div>
+                <div class="col-2" id="quantity">
+                  <%= t.input :quantity,
+                              required: true,
+                              input_html: {
+                                placeholder: '10',
+                                class: 'center-placeholder',
+                                min: 0,
+                                type: 'number' }, label: false %>
+                </div>
+                <div class="col-2">
+                  <%= t.input :unit, required: true, input_html: { placeholder: 'Km', class: 'center-placeholder',  }, label: false %>
+                </div>
+                <button class="p-2 mt-1 me-2 btn d-none" style="position: absolute; top: 0; right: 0px; width: 30px; background-color: white"
+                        data-new-task-target="deleteTask" data-action="click->new-task#removeTask">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+
+
+              </div>
+
+
+            </div>
+          <% end %>
+
+        </div>
+
+        <div data-new-task-target="placeholder"></div>
+
+        <div class="d-flex justify-content-between w-100">
+          <div class="col-12" data-new-task-target="addButton">
+            <button class="addTaskButton mb-4" data-action="click->new-task#addTask">Add task</button>
           </div>
-          <div class="col-2" id="quantity">
-            <%= t.input :quantity, required: true, input_html: { placeholder: '10', class: 'center-placeholder' }, label: false %>
+          <div class="col-5 d-none" data-new-task-target="toggleBtnRemove">
+            <button class="addTaskButton mb-4" data-action="click->new-task#toggleRemove">Remove tasks</button>
           </div>
-          <div class="col-2">
-            <%= t.input :unit, required: true, input_html: { placeholder: 'Km', class: 'center-placeholder',  }, label: false %>
-          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="mt-2 mb-4 w-100">
+      <h3>Rewards</h3>
+      <%= f.fields_for :rewards do |r| %>
+        <div class="row col-12">
+          <%= r.input :name, required: true, input_html: { placeholder: 'Reward for first place', class: 'center-placeholder' }, label: false %>
+        </div>
+      <% end %>
+      <h3>Sanctions</h3>
+      <%= f.fields_for :punishments do |p| %>
+        <div class="row col-12">
+          <%= p.input :name, required: true, input_html: { placeholder: 'Sanction for last place', class: 'center-placeholder' }, label: false %>
         </div>
       <% end %>
     </div>
 
-      <div data-new-task-target="placeholder"></div>
 
-    <div class="row col-12">
-      <button class="btn btn-primary mb-4" data-action="click->new-task#addTask">Add task</button>
-    </div>
-  </div>
-
-  <h3>Rewards</h3>
-  <%= f.fields_for :rewards do |r| %>
-    <div class="row col-12">
-      <%= r.input :name, required: true, input_html: { placeholder: 'Reward for first place', class: 'center-placeholder' }, label: false %>
-    </div>
+    <%= f.submit "Create Group", class:"drk-button"%>
   <% end %>
-
-  <h3>Sanctions</h3>
-  <%= f.fields_for :punishments do |p| %>
-    <div class="row col-12">
-      <%= p.input :name, required: true, input_html: { placeholder: 'Sanction for last place', class: 'center-placeholder' }, label: false %>
-    </div>
-  <% end %>
-
-  <%= f.submit "Create Group", class:"drk-button"%>
-<% end %>
-
-<%= link_to "Back", groups_path %>
 </section>
