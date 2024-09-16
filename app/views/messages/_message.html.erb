@@ -1,1 +1,12 @@
-<p><%= message.member.user.username %> : <%= message.content %></p>
+<% if message.member.user.id == current_user_id %>
+  <div class="my-message">
+    <p><%= message.content %></p>
+  </div>
+<% else %>
+  <div class="other-message">
+    <div class="other-message-wrapper">
+    <h4 class="message-username" style="color: <%= message.member.color %>"><%= message.member.user.username %></h4>
+    <p><%= message.content %></p>
+    </div>
+  </div>
+<% end %>
