@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
 
-  static targets = ["taskForm", "placeholder"]
+  static targets = ["taskForm", "placeholder", "addButton", "toggleBtnRemove", "deleteTask"]
 
   connect() {
     console.log("Connected")
@@ -15,5 +15,43 @@ export default class extends Controller {
     newTask.innerHTML = newTask.innerHTML.replace(/\[0\]/g, `[${this.index}]`);
     this.placeholderTarget.insertAdjacentHTML('beforeend', newTask.innerHTML);
     this.index++;
+
+    // Change the style of buttons
+    this.addButtonTarget.classList.remove('col-12');
+    this.addButtonTarget.classList.add('col-5');
+    this.toggleBtnRemoveTarget.classList.remove('d-none');
+    console.dir(this.placeholderTargets);
+
+  }
+
+  toggleRemove (event) {
+    event.preventDefault();
+    this.deleteTaskTargets.forEach(deletes => {
+      deletes.classList.toggle('d-none');
+    });
+
+  }
+
+  removeTask(event) {
+    event.preventDefault();
+    // event.target.closest('.row').remove();
+    const taskFormElement = event.target.closest('.task-form');
+    if (taskFormElement) {
+      taskFormElement.remove();
+    }
+    const taskCount = this.element.querySelectorAll('.task-form').length;
+
+    // Mostrar el conteo en la consola
+    console.log(`Número de tareas restantes: ${taskCount}`);
+
+    // Puedes hacer algo condicional según el conteo
+    if (taskCount === 1) {
+      console.log("No quedan tareas.");
+      // Change the style of buttons
+      this.addButtonTarget.classList.add('col-12');
+      this.addButtonTarget.classList.remove('col-5');
+      this.toggleBtnRemoveTarget.classList.add('d-none');
+      
+  }
   }
 }
