@@ -1,11 +1,20 @@
+<div class=""></div>
 <h1>Edit progress</h1>
 <% task = Task.find(progress.task_id) %>
-<%= "Your current progress: #{progress.completion.round(2)}%" %>
-<%= "The current goal: #{task.quantity} #{task.unit}" %>
-<%= "What you did so far: #{(task.quantity * progress.completion) / 100}" %>
-<%= form_with(model: progress, url: progress_path(progress.id), method: :patch) do |f| %>
-  <%= label_tag :new_progress, "New progress in #{task.unit}" %>
-  <%= number_field_tag :new_progress, nil, required: true, placeholder: "Enter progress here", step: :any %>
-  <%= f.submit 'Update progression' %>
-<% end %>
-<%= link_to "Back", group_path(task.group_id) %>
+<div class='center-placeholder'>
+  <%= "The current goal: #{task.quantity} #{task.unit}" %>
+</div>
+<div class='center-placeholder'>
+<%= "Your Progress: #{(task.quantity * progress.completion) / 100} #{task.unit}" %>
+</div>
+<div class="edit-container">
+<%= form_with(model: progress, url: progress_path(progress.id), method: :patch, html:
+             { class: "container d-flex flex-column justify-content-center align-items-center m-2" }) do |f| %>
+    <input type="range" name="new_progress" id="new_progress" min="0" max="<%= task.quantity %>"
+           step="any" value="<%= (task.quantity * progress.completion / 100).round(1) %>"
+           class="edit-slider"
+           oninput="document.getElementById('output').value = parseFloat(this.value).toFixed(1)">
+    <output id="output"><%= (task.quantity * progress.completion / 100).round(1) %></output>
+    <%= f.submit 'Update progression', class: "btn btn-update"%>
+  <% end %>
+</div>

@@ -1,18 +1,20 @@
 
-<h1>Hello Seeker of Knowledge</h1>
+<h1>Profile</h1>
 
-<%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "profileimg" %>
-<h5><%= @user[:username] %></h5>
-<div class="progress">
+<div class="profile-desc">
+  <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "profile-picture" %>
+  <div class="profile-text">
+    <h3><%= @user[:username] %></h3>
+    <h5><%= @user[:first_name] %> <%= @user[:last_name] %></h5>
+  </div>
+</div>
+
+<!-- Progress bar -->
+<div class="progress-profile">
+  <h5>Today's Progress: </h5>
   <div class="progress-bar" role="progressbar" style="width: <%= (@user[:average_progress] || 0) * 100 %>%">
     <%= (@user[:average_progress] || 0) * 100 %>%
   </div>
 </div>
 
-<% @tasks.each do |task| %>
-    <div class="membercard">
-      <h5><%= task.name %>: <%= task.quantity %> <%= task.unit %></h5>
-    </div>
-  <% end %>
-
-<%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+<%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn btn-logout" %>
