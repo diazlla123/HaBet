@@ -97,3 +97,17 @@
   font-weight: bold;
   color: #012623;
 }
+
+
+.task-form {
+  position: relative;
+
+}
+
+.trash-new-task {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  width: 30px;
+  background-color: white;
+}
