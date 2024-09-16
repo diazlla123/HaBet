@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_10_165928) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_14_010327) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_10_165928) do
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_members_on_group_id"
     t.index ["user_id"], name: "index_members_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "member_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_messages_on_group_id"
+    t.index ["member_id"], name: "index_messages_on_member_id"
   end
 
   create_table "progresses", force: :cascade do |t|
@@ -85,6 +95,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_10_165928) do
 
   add_foreign_key "members", "groups"
   add_foreign_key "members", "users"
+  add_foreign_key "messages", "groups"
+  add_foreign_key "messages", "members"
   add_foreign_key "progresses", "members"
   add_foreign_key "progresses", "tasks"
   add_foreign_key "punishments", "groups"

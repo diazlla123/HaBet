@@ -15,19 +15,29 @@
   </div>
 
   <h3>Tasks</h3>
-  <%= f.fields_for :tasks do |t| %>
-    <div class="row">
-      <div class="col-8">
-        <%= t.input :name, required: true, input_html: { placeholder: 'Run', class: 'center-placeholder' }, label: false %>
-      </div>
-      <div class="col-2" id="quantity">
-      <%= t.input :quantity, required: true, input_html: { placeholder: '10', class: 'center-placeholder' }, label: false %>
-      </div>
-      <div class="col-2">
-      <%= t.input :unit, required: true, input_html: { placeholder: 'Km', class: 'center-placeholder',  }, label: false %>
-      </div>
-    </div> <!-- Dropdown menu -->
-  <% end %>
+  <div data-controller="new-task">
+    <div data-new-task-target="taskForm">
+      <%= f.fields_for :tasks do |t| %>
+        <div class="row">
+          <div class="col-8">
+            <%= t.input :name, required: true, input_html: { placeholder: 'Run', class: 'center-placeholder' }, label: false %>
+          </div>
+          <div class="col-2" id="quantity">
+            <%= t.input :quantity, required: true, input_html: { placeholder: '10', class: 'center-placeholder' }, label: false %>
+          </div>
+          <div class="col-2">
+            <%= t.input :unit, required: true, input_html: { placeholder: 'Km', class: 'center-placeholder',  }, label: false %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+      <div data-new-task-target="placeholder"></div>
+
+    <div class="row col-12">
+      <button class="btn btn-primary mb-4" data-action="click->new-task#addTask">Add task</button>
+    </div>
+  </div>
 
   <h3>Rewards</h3>
   <%= f.fields_for :rewards do |r| %>

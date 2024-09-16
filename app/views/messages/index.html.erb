@@ -1,0 +1,15 @@
+<h1> Your Group Discussion </h1>
+<%= turbo_stream_from "group_#{@group.id}_messages" %>
+<div id="messages" class="messages">
+  <% @messages.each do |message| %>
+    <%= render "messages/message", message: message %>
+  <% end %>
+</div>
+<br>
+
+<%= form_with(model: [@group, @message], url: group_messages_path(@group)) do |f| %>
+  <%= f.label :content %><br>
+  <%= f.text_field :content %><br>
+  <%= f.submit "Send" %>
+<% end %>
+<% console %>
