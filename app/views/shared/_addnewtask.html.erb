@@ -1,9 +1,13 @@
-<h3>New Task</h3>
+<div class="new-task">
 <%= simple_form_for [@group, @task] do |t| %>
-  <%= t.input :name, required: true, placeholder: "Enter task name" %>
-  <%= t.input :unit, required: true, collection: ["km", "hr", "m", "minutos", "unid", "glb", "litros", "m2", "kilogramos"], include_blank: "Select unit type" %> <!-- Dropdown menu -->
-  <%= t.input :quantity, required: true, placeholder: "Enter a number" %>
-  <%= t.hidden_field :group_id, value: @group.id %>
 
-  <%= t.submit "Create Task" %>
+  <div class="new-task-wrapper">
+    <%= t.input :name, required: true, input_html: { placeholder: 'Run', class: 'center-placeholder', id: 'task-name' }, label: false %>
+    <%= t.input :quantity, required: true, input_html: { placeholder: '10', class: 'center-placeholder', id: 'task-quantity' }, label: false %>
+    <%= t.input :unit, required: true, input_html: { placeholder: 'Km', class: 'center-placeholder', id: 'task-unit' }, label: false %>
+    <%= t.hidden_field :group_id, value: @group.id %>
+  </div>
+
+  <%= t.submit "Create Task", class: "btn btn-primary corpy-link-button-show-group", id:"new-task-button" %>
 <% end %>
+</div>

@@ -15,7 +15,7 @@ form.simple_form {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  width: 300px;
+  width: 300px; // 93% mx-0
 }
 
 .simple_form .form-inputs .form-control {
@@ -78,6 +78,7 @@ form.simple_form {
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 10px;
+  margin-top: 10px;
   color: #0c5953;
 }
 
@@ -93,4 +94,11 @@ form.simple_form {
 .simple_form .devise-links {
   margin-top: 10px;
   text-align: center;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
 }

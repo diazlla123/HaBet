@@ -26,7 +26,7 @@ class RankingCalculation
       average_progress = total_completion_sum / @tasks.size
 
       # Devuelve un hash con el nombre del usuario y su progreso promedio
-      { username: username, average_progress: average_progress, numer_of_tasks: @tasks.size }
+      { user_id: User.find_by(username: username), username: username, average_progress: average_progress, numer_of_tasks: @tasks.size }
     end
 
     # positions.sort_by(progress)

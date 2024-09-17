@@ -9,14 +9,14 @@ Rails.application.routes.draw do
 
   resources :groups do
     resources :members, only: [:create, :index, :edit]
-    resources :rewards, only: [:index]
-    resources :punishments, only: [:index]
+    resources :rewards, only: [:index, :update]
+    resources :punishments, only: [:index, :update]
     resources :tasks, only: [:new, :create]
     resources :messages, only: [:index, :create]
   end
 
   resources :progresses, only: [:edit, :update]
-  resources :members, only: [:show]
+  resources :members, only: [:show, :destroy, :edit]
 
   # Defines the root path route ("/")
   # root "posts#index"

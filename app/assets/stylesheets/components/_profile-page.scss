@@ -1,0 +1,73 @@
+.profile-desc {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  border: none;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.profile-picture {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-right: 15px;
+}
+
+.profile-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-desc h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.profile-desc h5 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: normal;
+  color: #444;
+}
+
+.progress-profile{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  border: none;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+
+.btn-logout {
+  width: 60%;
+  padding: 10px;
+  background-color: #04AD9E;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-logout:hover {
+  background-color: #054d4a;
+  color: white;
+}
+
+.progress-bar {
+  background-color: #04ad9e; /* The color of the progress */
+  height: 20px;
+  border-radius: 5px;
+}

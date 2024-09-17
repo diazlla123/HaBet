@@ -26,3 +26,10 @@
 .card-member-name{
   font-weight: bold;
 }
+
+
+.member-detail {
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+}

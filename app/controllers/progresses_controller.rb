@@ -12,4 +12,5 @@ class ProgressesController < ApplicationController
     @progress.update(completion: new_completion)
     redirect_to group_path(Task.find(@progress.task_id).group_id)
   end
+
 end

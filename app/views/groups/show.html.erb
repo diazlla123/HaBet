@@ -164,8 +164,11 @@
         <% end %>
       </div>
 
+
       <div data-controller="add-group-reward" class="add-group-reward">
         <button data-action="click->add-group-reward#addReward" class="btn btn-primary button-reward">Add Reward</button>
+
+
         <div data-add-group-reward-target="togglableElement" class="d-none">
           <%= render "shared/addnewreward", reward: @reward %>
         </div>
@@ -188,8 +191,11 @@
         <% end %>
       </div>
 
+
       <div data-controller="add-group-punishment" class="add-group-punishment">
         <button data-action="click->add-group-punishment#addPunishment" class="btn btn-primary button-punishment">Add Punishment</button>
+
+
         <div data-add-group-punishment-target="togglableElement" class="d-none">
           <%= render "shared/addnewpunishment", punishment: @punishment %>
         </div>

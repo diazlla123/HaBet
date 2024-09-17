@@ -20,7 +20,8 @@ class MembersController < ApplicationController
   end
 
   def index
-    @member = Member.where(group_id: params[:group_id])
+    @members = Member.where(group_id: params[:group_id])
+    @group = @members.first.group
     @tasks = Task.where(group_id: params[:group_id])
     ranking_calculation = RankingCalculation.new(@tasks, params[:group_id])
     @progress = ranking_calculation.progress
@@ -29,6 +30,24 @@ class MembersController < ApplicationController
 
   def show
     @user = User.find(current_user.id)
-    @tasks = Task.joins(group: :members).where(members: { user_id: current_user.id })
+    @tasks = @user.tasks
+    #@tasks = Task.joins(group: :members).where(members: { user_id: current_user.id })
+    #@progress = Progress.new(task_id: @tasks.ids, member_id: @user.id, completion: 0.00)
+    
+  end
+
+  def destroy
+    # 1. Delete the member
+    @member = Member.find(params[:id])
+    group = @member.group
+    is_current_user = @member.user_id == current_user.id
+    # 2. Delete the  member along their progresse because it have dependen destroy
+    @member.destroy
+    # 3. Redireccionar a la misma vista
+    if is_current_user
+      redirect_to groups_path
+    else
+      redirect_to group_members_path(group)
+    end
   end
 end
