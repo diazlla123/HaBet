@@ -1,177 +1,199 @@
 <section class="section-group-detail">
-   <div data-controller="group-member" data-group-member-group-id-value="<%= @group.id %>">
-    <%= render 'shared/linkShare' %>
-  </div>
 
-  <div class="title-group-detail">
+  <section class="title-group-detail">
     <div class="line-groups"></div>
     <h3 class="title-group-detail-name">
       <%= @group.name %>
     </h3>
     <div class="line-groups"></div>
-  </div>
+  </section>
 
-  <div class="text-task-group-detail">
-    <p class="text-task-group-detail-name">Tasks</p>
-  </div>
+  <section class="header-div-container-buttons">
+    <div class="task-div-container-header-buttons">
+      <div data-controller="group-member" data-group-member-group-id-value="<%= @group.id %>">
+        <%= render 'shared/linkShare' %>
+      </div>
+      
+      <%= link_to "Messages", group_messages_path(@group.id), class: "task-div-container-header-chat" %>
+    </div>
+  </section>
 
-  <div class="container">
-    <div class="row">
-
+  <section class="task-section-container">
+    <div class="title-group-detail">
+      <div class="line-groups"></div>
+        <h3 class="title-group-detail-name">
+          Task
+        </h3>
+      <div class="line-groups"></div>
+    </div>
+    
+    <div class="task-view-container">
       <% if @tasks.present? %>
         <% @tasks.each do |task| %>
-            <div class="d-flex border bg-secondary mx-2">
+  
+          <div class="div-container-individual-task">
+            <div class="title-container-individual-task">
               <h5><%= task.name %></h5>
-              <p>Task Goal: <%= task.quantity %></p>
+              <p>
+                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-target-arrow"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 7a5 5 0 1 0 5 5" /><path d="M13 3.055a9 9 0 1 0 7.941 7.945" /><path d="M15 6v3h3l3 -3h-3v-3z" /><path d="M15 9l-3 3" /></svg>
+
+                <%= task.quantity %>
+                <%= task.unit %>
+              </p>
             </div>
 
             <% @members.each do |member| %>
               <% progress = Progress.find_by(member_id: member.id, task_id: task.id) %>
+              <div class="container-bar-progress-indivual-task" data-controller="edit-progress">
+                <div class="header-container-progress-individual-task">
+                  <div class="title-container-username-editprogress">
+                    <h5 class="username-container-indivual-task">
+                      <%= User.find(member.user_id).username %>
+                    </h5>
 
-
-                <div data-controller="edit-progress">
-                  <div class="row justify-content-center my-2">
-                    <div class="col-1">
+                    <div class="icons-edit-progress" data-action="click->edit-progress#toggle">
                       <% if progress.present? %>
                         <% if progress.completion.round(2) >= 100.00 %>
-                          <i class="fa-solid fa-check"></i>
+                          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-checkbox"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
                         <% else %>
-                          <i class="fa-solid fa-xmark"></i>
+                          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
                         <% end %>
                       <% end %>
                     </div>
+                  </div>
 
-                    <div class="col-3">
-                      <%= User.find(member.user_id).username %>
-                    </div>
-
-                      <% if progress.member.user.id == current_user.id %>
-                    <div class="col-7">
-
-                      <div class="progress" data-action="click->edit-progress#toggle">
-                        <div class="progress-bar" role="progressbar" style="width: <%= progress.completion.round(2) %>%">
+                  <% if progress.member.user.id == current_user.id %>
+                    <div class="barprogress-task-indiviaul">
+                      <div class="progress" style="background-color: #bbbbbbdd;" data-action="click->edit-progress#toggle">
+                        <div class="progress-bar" role="progressbar" style="width: <%= progress.completion.round(2) %>%;">
                           <%= progress.completion.round(2) %>
                         </div>
                       </div>
-
                     </div>
 
-                    <div class="col-1" data-action="click->edit-progress#toggle">
-                        <% if progress.present? %>
-                          <% if progress.completion.round(2) >= 100.00 %>
-                            <i class="fa-solid fa-check"></i>
-                          <% else %>
-                            <i class="fa-solid fa-pen-to-square"></i>
-                          <% end %>
-                        <% end %>
-
-                    </div>
-                      <% else %>
-                      <div class="col-7">
-
-                      <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: <%= progress.completion.round(2) %>%">
+                  <% else %>
+                    <div class="barprogress-task-indiviaul">
+                      <div class="progress" style="background-color: #bbbbbbdd;">
+                        <div class="progress-bar" role="progressbar" style="width: <%= progress.completion.round(2) %>%;">
                           <%= progress.completion.round(2) %>
                         </div>
                       </div>
-
                     </div>
-
-                      <% end %>
-
-
-
-
-                  </div>
-
-                  <div data-edit-progress-target="togglableElement" class="d-none">
-                    <%= render "progresses/editprogress", progress: progress %>
-                  </div>
+                  <% end %>
                 </div>
 
-
-
-              <% end %>
+                <div class="d-none" data-edit-progress-target="togglableElement">
+                  <%= render "progresses/editprogress", progress: progress %>
+                </div>
+              </div>
+            <% end %>
+          </div>
         <% end %>
 
-        <div data-controller="add-group-task">
-            <button data-action="click->add-group-task#addTask" class="btn btn-primary">Add Task</button>
-            <div data-add-group-task-target="togglableElement" class="d-none">
-              <%= render "shared/addnewtask", task: @task %>
-            </div>
-        </div>
-
+        <div class="add-group-task" data-controller="add-group-task">
+          <button data-action="click->add-group-task#addTask" class="btn btn-primary add-new-task-individualview">
+            Add Task
+          </button>
+          <div class="d-none" data-add-group-task-target="togglableElement">
+            <%= render "shared/addnewtask", task: @task %>
+          </div>
         </div>
       <% else %>
-          <p>No tasks available</p>
+        <p>No tasks available</p>
       <% end %>
     </div>
-  </div>
-
-
-
-
-
-  <hr> <br>
-
-   <!-- Your posistion -->
-
-  <div class="container">
-    <div class="row">
-      <div class="col-3">
-        <%= link_to group_members_path(@group) do %>
-          <i class="fa-solid fa-users"></i>
-        <% end %>
-      </div>
-      <div class="col-9">
-        <h3>Your postition in the group</h3>
-        <h5><%= @my_index %>'s Place</h5>
-        <p>Out of <%= @members.size %></p>
-        <p>Behind <%= "Y" %> by <%= 'xxx' %> points </p>
-      </div>
+  </section>
+  
+  <section class="position-group-container">
+    <div class="title-group-detail">
+      <div class="line-groups"></div>
+        <h3 class="title-group-detail-name">
+          Your position
+        </h3>
+      <div class="line-groups"></div>
     </div>
-  </div>
 
-  <hr>
-  <div class="container border mx-2">
-    <div class="row">
-      <div class="col-6">
-        <%= link_to "Your Rewards", group_rewards_path(@group) %>
-        <h2>Rewards</h2>
+  
+    <div class="container-targets-group-position">
+      <%= link_to group_members_path(@group), class: "target-position-group-individual" do %>
+        <div class="target-position">
+          <div class="icon-group-position">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users-group">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+              <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
+              <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+              <path d="M17 10h2a2 2 0 0 1 2 2v1" />
+              <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+              <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
+            </svg>
+          </div>
+        
+          <div class="data-position-group-indivual">
+            <p><%= @my_index %>'s Place</p>
+            <p>Out of <%= @members.size %></p>
+          </div>
+        </div>
+    <% end %>
+    
+    </div>
+  </section>
+
+  <section class="rewards-punishments-container">
+    <div class="title-group-detail">
+      <div class="line-groups"></div>
+        <h3 class="title-group-detail-name">
+          Incentives
+        </h3>
+      <div class="line-groups"></div>
+    </div>
+
+    <div class="target-rewards-container">
+      <div class="container-title-reward">
+        <h5 class="title-reward">
+          Rewards
+        </h5>
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-award"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 9m-6 0a6 6 0 1 0 12 0a6 6 0 1 0 -12 0" /><path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889" /><path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889" /></svg>
+      </div>
+
+      <div class="container-all-rewards">
         <% @group.rewards.each do  |reward| %>
-          <p><%= reward.name %></p>
+          <p>
+            - <%= reward.name %>
+          </p>
         <% end %>
       </div>
 
-      <!-- POPUP REWARDS -->
-    <div data-controller="add-group-reward">
-        <button data-action="click->add-group-reward#addReward" class="btn btn-primary">Add Reward</button>
+      <div data-controller="add-group-reward" class="add-group-reward">
+        <button data-action="click->add-group-reward#addReward" class="btn btn-primary button-reward">Add Reward</button>
         <div data-add-group-reward-target="togglableElement" class="d-none">
           <%= render "shared/addnewreward", reward: @reward %>
         </div>
-    </div>
-
-
-      <div class="col-6">
-        <h2>Punishments</h2>
-        <% @group.punishments.each do  |punishment| %>
-          <p><%= punishment.name %></p>
-        <% end %>
       </div>
     </div>
 
-        <!-- POPUP PUNISHMENT -->
-    <div data-controller="add-group-punishment">
-        <button data-action="click->add-group-punishment#addPunishment" class="btn btn-primary">Add Punishment</button>
+    <div class="target-punishments-container">
+      <div class="container-title-punishment">
+        <h5 class="title-punishment">
+          Punishments
+        </h5>
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-alert-triangle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 9v4" /><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" /><path d="M12 16h.01" /></svg>
+      </div>
+
+      <div class="container-all-punishments">
+        <% @group.punishments.each do  |punishment| %>
+          <p>
+            - <%= punishment.name %>
+          </p>
+        <% end %>
+      </div>
+
+      <div data-controller="add-group-punishment" class="add-group-punishment">
+        <button data-action="click->add-group-punishment#addPunishment" class="btn btn-primary button-punishment">Add Punishment</button>
         <div data-add-group-punishment-target="togglableElement" class="d-none">
           <%= render "shared/addnewpunishment", punishment: @punishment %>
         </div>
     </div>
-
-  </div>
-
-
-
-
+    </div>
+  </section>
 </section>
-<% console %>
