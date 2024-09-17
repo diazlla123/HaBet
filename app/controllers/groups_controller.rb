@@ -43,6 +43,10 @@ class GroupsController < ApplicationController
         end
       end
 
+      ### Creando Chat
+      @chat = Chat.new(group_id: @group.id)
+      @chat.save!
+
       redirect_to group_path(@group.id)
     else
       render :new, status: :unprocessable_entity

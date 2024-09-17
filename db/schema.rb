@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_17_170153) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_17_184024) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chats", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_chats_on_group_id"
+  end
 
   create_table "groups", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -64,10 +71,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_170153) do
   create_table "messages", force: :cascade do |t|
     t.text "content"
     t.bigint "member_id", null: false
-    t.bigint "group_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_messages_on_group_id"
+    t.bigint "chat_id"
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
     t.index ["member_id"], name: "index_messages_on_member_id"
   end
 
@@ -124,6 +131,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_170153) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "chats", "groups"
   add_foreign_key "locations", "members"
   add_foreign_key "member_punishments", "members"
   add_foreign_key "member_punishments", "punishments"
@@ -131,7 +139,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_170153) do
   add_foreign_key "member_rewards", "rewards"
   add_foreign_key "members", "groups"
   add_foreign_key "members", "users"
-  add_foreign_key "messages", "groups"
+  add_foreign_key "messages", "chats"
   add_foreign_key "messages", "members"
   add_foreign_key "progresses", "members"
   add_foreign_key "progresses", "tasks"
