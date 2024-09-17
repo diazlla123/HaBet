@@ -12,11 +12,16 @@ Rails.application.routes.draw do
     resources :rewards, only: [:index, :update]
     resources :punishments, only: [:index, :update]
     resources :tasks, only: [:new, :create]
-    resources :messages, only: [:index, :create]
+    # resources :messages, only: [:show, :create]
   end
 
   resources :progresses, only: [:edit, :update]
   resources :members, only: [:show, :destroy, :edit]
+
+
+  resources :chats, only: [:index, :show] do
+    resources :messages, only: [:index, :show, :create]
+  end
 
   # Defines the root path route ("/")
   # root "posts#index"

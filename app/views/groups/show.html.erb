@@ -13,8 +13,8 @@
       <div data-controller="group-member" data-group-member-group-id-value="<%= @group.id %>">
         <%= render 'shared/linkShare' %>
       </div>
-      
-      <%= link_to "Messages", group_messages_path(@group.id), class: "task-div-container-header-chat" %>
+
+      <%= link_to "Messages", chat_messages_path(Chat.find_by(group_id: @group.id).id), class: "task-div-container-header-chat" %>
     </div>
   </section>
 
@@ -26,11 +26,11 @@
         </h3>
       <div class="line-groups"></div>
     </div>
-    
+
     <div class="task-view-container">
       <% if @tasks.present? %>
         <% @tasks.each do |task| %>
-  
+
           <div class="div-container-individual-task">
             <div class="title-container-individual-task">
               <h5><%= task.name %></h5>
@@ -103,7 +103,7 @@
       <% end %>
     </div>
   </section>
-  
+
   <section class="position-group-container">
     <div class="title-group-detail">
       <div class="line-groups"></div>
@@ -113,7 +113,7 @@
       <div class="line-groups"></div>
     </div>
 
-  
+
     <div class="container-targets-group-position">
       <%= link_to group_members_path(@group), class: "target-position-group-individual" do %>
         <div class="target-position">
@@ -128,14 +128,14 @@
               <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
             </svg>
           </div>
-        
+
           <div class="data-position-group-indivual">
             <p><%= @my_index %>'s Place</p>
             <p>Out of <%= @members.size %></p>
           </div>
         </div>
     <% end %>
-    
+
     </div>
   </section>
 
