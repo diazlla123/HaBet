@@ -1,0 +1,38 @@
+.task-div-container-header-chat{
+  width: 7rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+
+  &:hover{
+    transform: scale(1.1);
+  }
+
+  &:active{
+    transform: scale(1);
+  }
+}
+.task-div-container-header-chat{
+  background-color: #00967a;
+  color: white;
+}
+.add-group-task{
+  width: 100%;
+}
+.add-new-task-individualview{
+    width: 100%;
+    text-align: center;
+    border-radius: 0.5rem;
+    border: none;
+    transition: all 0.3s ease;
+  
+    &:hover{
+      transform: scale(1.05);
+    }
+}
