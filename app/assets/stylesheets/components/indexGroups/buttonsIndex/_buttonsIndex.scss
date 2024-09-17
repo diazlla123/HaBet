@@ -1,6 +1,7 @@
 .create-group-index,
 .button-delete-group-toogle{
-  width: 7rem;
+  width: 100%;
+  height: 2.5rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
   font-weight: bold;
@@ -20,10 +21,13 @@
   }
 }
 .create-group-index{
-  background-color: #04ad9e;
+  background-color: #025951;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .button-delete-group-toogle{
-  background-color: #00967a;
+  background-color: #012623;
   color: white;
 }
