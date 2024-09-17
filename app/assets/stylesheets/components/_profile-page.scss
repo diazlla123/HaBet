@@ -45,7 +45,6 @@
   padding: 20px;
   margin-bottom: 20px;
   width: 100%;
-  background-color: green;
 }
 
 
@@ -65,4 +64,10 @@
 .btn-logout:hover {
   background-color: #054d4a;
   color: white;
+}
+
+.progress-bar {
+  background-color: #04ad9e; /* The color of the progress */
+  height: 20px;
+  border-radius: 5px;
 }

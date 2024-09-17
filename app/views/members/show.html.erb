@@ -9,11 +9,21 @@
   </div>
 </div>
 
+<!-- Progress Calculation -->
+<% progress_sum = 0 %>
+<% @tasks.each do |t| %>
+  <% sum = t.total_progress(@user) %>
+  <% progress_sum += sum %>
+<% end %>
+
+
 <!-- Progress bar -->
 <div class="progress-profile">
-  <h5>Today's Progress: </h5>
-  <div class="progress-bar" role="progressbar" style="width: <%= (@user[:average_progress] || 0) * 100 %>%">
-    <%= (@user[:average_progress] || 0) * 100 %>%
+  <h5>Total Progress: </h5>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" style="width: <%= [[(progress_sum || 0).round(2), 100].min, 0].max %>%;">
+      <%= (progress_sum || 0).round(2) %>% Complete
+    </div>
   </div>
 </div>
 
