@@ -41,7 +41,6 @@ class MembersController < ApplicationController
   def show
     @user = User.find(current_user.id)
     @tasks = @user.tasks
-
   end
 
   def destroy

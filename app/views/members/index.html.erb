@@ -51,20 +51,19 @@
       </div>
     <% end %>
 
-    <!-- Toggable Section -->
-    <div class="toggable-section" data-edit-members-target="toggable">
-      <div data-controller="group-member" data-group-member-group-id-value="<%= @group.id %>">
-        <%= render 'shared/linkShare' %>
-      </div>
+  <div class="toggable-section" data-edit-members-target="toggable">
+    <div data-controller="group-member" data-group-member-group-id-value="<%= @group.id %>">
+      <%= render 'shared/linkShare' %>
     </div>
-
-    <% if current_user.members.find_by(group_id: params[:group_id]).admin %>
-      <button class="edit-button" data-action="click->edit-members#toggleEdits" data-edit-members-target="editButton">
-        Edit members
-      </button>
-    <% end %>
   </div>
 
+  <% if current_user.members.find_by(group_id: params[:group_id]).admin %>
+    <button class="edit-button" data-action="click->edit-members#toggleEdits" data-edit-members-target="editButton">
+      Edit members
+    </button>
+  <% end %>
+
+  </div>
   <!-- Punishments Card -->
   <div class="card my-3">
     <div class="card-header">
@@ -110,5 +109,4 @@
       <% end %>
     </div>
   </div>
-
 </section>
