@@ -4,7 +4,7 @@
   <div class="line-groups"></div>
 </div>
 
-<div class="container-groups">
+<div class="container-chats">
 <% @groups.each do |group| %>
   <div class="card-group">
     <%= link_to chat_messages_path(Chat.find_by(group_id: group.id).id), class: "card-group-title" do %>
