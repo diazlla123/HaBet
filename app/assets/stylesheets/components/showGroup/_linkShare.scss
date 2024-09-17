@@ -45,13 +45,14 @@
   #linkToCopy {
     width: 100%;
     background-color: #D9D9D9;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
     color: #025951;
     text-align: center;
     margin-bottom: 1rem;
   }
   .corpy-link-button-show-group,
   .go-back-button-show-group{
+    padding: 0.5rem;
     text-align: center;
     border-radius: 0.5rem;
     border: none;
@@ -76,7 +77,8 @@
 }
 .button-share-link{
   width: 100%;
-  padding: 0.45rem;
+  height: 2.5rem;
+  padding: 0.5rem;
   background-color: #04ad9e;
   font-size: 0.9em;
   font-weight: bold;
