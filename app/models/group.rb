@@ -11,9 +11,10 @@ class Group < ApplicationRecord
   accepts_nested_attributes_for :rewards, allow_destroy: true
 
   validates :name, presence: true
-
+  validates :tasks, presence: true
+  
   has_one_attached :photo
-
+  
 end
 
 # :members, allow_destroy: true, uniqueness: true

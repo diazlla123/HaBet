@@ -1,0 +1,36 @@
+.div-container-simple-form-reward,
+.div-container-simple-form-punishment{
+  width: 100%;
+}
+.form-simple-reward,
+.form-simple-punishment{
+  width: 100% !important;
+  padding: 0.5rem 0rem !important;
+  align-items: normal !important;
+}
+.button-update-reward,
+.button-update-punishment{
+  width: 100%;
+  padding: 6px 12px;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: none;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  background-color: #00967a;
+  border-color: #00967a;
+  color: white;
+
+  &:hover,
+  &:hover{
+    transform: scale(1.05);
+  }
+}
+.input-newreward,
+.input-newpunishment{
+  padding-left: 12px !important;
+}
+.label-reward-name,
+.label-punishment-name{
+  font-size: 1.1em;
+}

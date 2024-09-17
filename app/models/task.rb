@@ -14,4 +14,5 @@ class Task < ApplicationRecord
     end
   end
 
+  validates :name, :unit, :quantity, presence: true
 end

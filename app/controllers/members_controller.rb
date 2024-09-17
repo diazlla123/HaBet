@@ -8,6 +8,14 @@ class MembersController < ApplicationController
     @member.group = @group
 
     if @member.save
+      # Assign existing punishments and rewards to the new member
+      @group.punishments.each do |punishment|
+        @member.member_punishments.create(punishment: punishment)
+      end
+
+      @group.rewards.each do |reward|
+        @member.member_rewards.create(reward: reward)
+      end
       ### Crea un progreso asignado al nuevo miembro para cada task en el grupo
       @group.tasks.each do |task|
         progress = Progress.new(task_id: task.id, member_id: @member.id, completion: 0.00)
@@ -26,12 +34,13 @@ class MembersController < ApplicationController
     ranking_calculation = RankingCalculation.new(@tasks, params[:group_id])
     @progress = ranking_calculation.progress
     @sorted_positions = ranking_calculation.position_table
+    @member_punishments = current_user.members.find_by(group_id: params[:group_id]).member_punishments.includes(:punishment)
+    @member_rewards = current_user.members.find_by(group_id: params[:group_id]).member_rewards.includes(:reward)
   end
 
   def show
     @user = User.find(current_user.id)
     @tasks = @user.tasks
-
   end
 
   def destroy
