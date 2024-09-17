@@ -1,0 +1,18 @@
+<div class="section__title--groups">
+  <div class="line-groups"></div>
+    <h2 class="section__h2--groups">Your chats</h2>
+  <div class="line-groups"></div>
+</div>
+
+<div class="container-chats">
+<% @groups.each do |group| %>
+  <div class="card-group">
+    <%= link_to chat_messages_path(Chat.find_by(group_id: group.id).id), class: "card-group-title" do %>
+    <%= image_tag("fotox.webp", class: "picture-profile-group") %>
+    <div class="name-group-description">
+      <h3><%= group.name %></h3>
+    </div>
+  </div>
+  <% end %>
+<% end %>
+</div>

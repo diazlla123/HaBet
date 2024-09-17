@@ -42,10 +42,37 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_195019) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "chats", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_chats_on_group_id"
+  end
+
   create_table "groups", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", null: false
+  end
+
+  create_table "member_punishments", force: :cascade do |t|
+    t.bigint "member_id", null: false
+    t.bigint "punishment_id", null: false
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_member_punishments_on_member_id"
+    t.index ["punishment_id"], name: "index_member_punishments_on_punishment_id"
+  end
+
+  create_table "member_rewards", force: :cascade do |t|
+    t.bigint "member_id", null: false
+    t.bigint "reward_id", null: false
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_member_rewards_on_member_id"
+    t.index ["reward_id"], name: "index_member_rewards_on_reward_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -62,10 +89,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_195019) do
   create_table "messages", force: :cascade do |t|
     t.text "content"
     t.bigint "member_id", null: false
-    t.bigint "group_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_messages_on_group_id"
+    t.bigint "chat_id"
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
     t.index ["member_id"], name: "index_messages_on_member_id"
   end
 
@@ -124,9 +151,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_195019) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chats", "groups"
+  add_foreign_key "member_punishments", "members"
+  add_foreign_key "member_punishments", "punishments"
+  add_foreign_key "member_rewards", "members"
+  add_foreign_key "member_rewards", "rewards"
   add_foreign_key "members", "groups"
   add_foreign_key "members", "users"
-  add_foreign_key "messages", "groups"
+  add_foreign_key "messages", "chats"
   add_foreign_key "messages", "members"
   add_foreign_key "progresses", "members"
   add_foreign_key "progresses", "tasks"
