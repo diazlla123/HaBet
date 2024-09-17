@@ -29,7 +29,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @user = current_user
-    if @group.save!
+    if @group.save
       @admin = Member.new(user_id: @user.id, group_id: @group.id, admin: true)
       @admin.save
 
@@ -43,7 +43,7 @@ class GroupsController < ApplicationController
         end
       end
 
-      redirect_to group_path(@group.id), notice: "ESSOOO"
+      redirect_to group_path(@group.id)
     else
       render :new, status: :unprocessable_entity
     end
