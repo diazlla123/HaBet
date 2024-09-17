@@ -1,11 +1,13 @@
-
 <h1>Profile</h1>
 
 <div class="profile-desc">
-  <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "profile-picture" %>
+  <% if current_user.photo.present? && current_user.photo.key.present? %>
+    <%= cl_image_tag(current_user.photo.key, class: "profile-picture") %>
+  <% end %>
+
   <div class="profile-text">
-    <h3><%= @user[:username] %></h3>
-    <h5><%= @user[:first_name] %> <%= @user[:last_name] %></h5>
+    <h3><%= @user.username %></h3>
+    <h5><%= @user.first_name %> <%= @user.last_name %></h5>
   </div>
 </div>
 
@@ -15,7 +17,6 @@
   <% sum = t.total_progress(@user) %>
   <% progress_sum += sum %>
 <% end %>
-
 
 <!-- Progress bar -->
 <div class="progress-profile">

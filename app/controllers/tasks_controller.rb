@@ -5,8 +5,9 @@ class TasksController < ApplicationController
   end
 
   def create
-    @group = params[:task][:group_id]
+    @group = params[:group_id]
     @task = Task.new(task_params)
+    @task.group_id = @group
     if @task.save
       @members = Member.where(group: @task.group_id)
       @members.each do |member|

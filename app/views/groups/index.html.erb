@@ -9,7 +9,10 @@
     <% @user_groups.each do |group| %>
       <div class="card-group">
         <%= link_to group_path(group.id), class: "card-group-title" do %>
-          <%= image_tag("fotox.webp", class: "picture-profile-group") %>
+          <% if group.photo.present? && group.photo.key.present? %>
+            <%= cl_image_tag(group.photo.key, class: "picture-profile-group") %>
+          <% end %>
+
           <div class="name-group-description">
             <h3><%= group.name %></h3>
             <p>Progress:</p>
@@ -48,4 +51,6 @@
       Delete Group
     </button>
   </div>
+
+  <%= link_to "ALL YOUR MESSAGES", chats_path %>
 </section>

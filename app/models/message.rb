@@ -1,15 +1,15 @@
 class Message < ApplicationRecord
   belongs_to :member
-  belongs_to :group
+  belongs_to :chat
 
-  validates :content, :group_id, :member_id, presence: true
+  validates :content, :chat_id, :member_id, presence: true
 
   after_create_commit :broadcast_message
 
   private
 
   def broadcast_message
-    broadcast_append_to "group_#{group.id}_messages",
+    broadcast_append_to "chat_#{chat.id}_messages",
                         partial: "messages/message",
                         locals: { message:self, current_user_id: member.id }
   end

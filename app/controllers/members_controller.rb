@@ -41,9 +41,6 @@ class MembersController < ApplicationController
   def show
     @user = User.find(current_user.id)
     @tasks = @user.tasks
-    #@tasks = Task.joins(group: :members).where(members: { user_id: current_user.id })
-    #@progress = Progress.new(task_id: @tasks.ids, member_id: @user.id, completion: 0.00)
-
   end
 
   def destroy

@@ -1,0 +1,96 @@
+.member-detail {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+
+  .members-list {
+    width: 100%;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .member-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1rem;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      background-color: #E6E6E6;
+
+      .member-card-row {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+      }
+
+      .avatar-column {
+        flex: 0 0 50px; /* Adjust width as necessary */
+        text-align: center;
+
+        .avatar-icon {
+          font-size: 2rem;
+        }
+      }
+
+      .info-column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding-left: 1rem;
+
+        .member-name {
+          font-size: 1.25rem;
+          font-weight: 500;
+        }
+
+        .rank {
+          margin: 0.5rem 0;
+        }
+
+        .progress-bar-container {
+          background-color: #e9ecef;
+          height: 1rem;
+          border-radius: 0.25rem;
+          margin-top: 0.5rem;
+
+          .progress-bar {
+            background-color: #04AD9E;
+            height: 100%;
+            border-radius: 0.25rem;
+            color: white;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+
+  .edit-button {
+    width: 60%;
+    padding: 10px;
+    margin-top: 5px;
+    background-color: #04AD9E;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+
+    &.active {
+      background-color: #024741;
+      color: white;
+    }
+
+    &:hover {
+      background-color: #024741;
+    }
+  }
+}

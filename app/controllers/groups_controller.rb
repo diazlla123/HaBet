@@ -43,6 +43,10 @@ class GroupsController < ApplicationController
         end
       end
 
+      ### Creando Chat
+      @chat = Chat.new(group_id: @group.id)
+      @chat.save!
+
       redirect_to group_path(@group.id)
     else
       render :new, status: :unprocessable_entity
@@ -72,7 +76,7 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name,
+    params.require(:group).permit(:name, :photo,
                                   tasks_attributes:[:id, :name, :unit, :quantity, :_destroy],
                                   punishments_attributes: [:id, :name, :_destroy],
                                   rewards_attributes: [:id, :name, :_destroy])

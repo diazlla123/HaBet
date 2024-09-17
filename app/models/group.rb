@@ -12,6 +12,9 @@ class Group < ApplicationRecord
 
   validates :name, presence: true
   validates :tasks, presence: true
+  
+  has_one_attached :photo
+  
 end
 
 # :members, allow_destroy: true, uniqueness: true
