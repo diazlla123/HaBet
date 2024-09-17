@@ -8,9 +8,30 @@
   border-top: 2px solid #054d4a;
   display: flex;
   justify-content: space-around;
+  box-sizing: border-box;
 }
 
 .profileimg{
-  width:20px;
+  width: 30px;
   border-radius: 50%;
+}
+
+.button_tabbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.button_tabbar i {
+  font-size: 20px;
+  color: #04AD9E;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
 }
