@@ -14,7 +14,9 @@
 
   <% if user_signed_in? %>
     <%= link_to member_path(current_user.id), class: "button_tabbar" do %>
-      <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "profileimg", alt: "Profile" %>
+      <% if current_user.photo.present? && current_user.photo.key.present? %>
+        <%= cl_image_tag(current_user.photo.key, class: "profileimg") %>
+      <% end %>
     <% end %>
   <% else %>
     <%= link_to new_user_session_path, class: "button_tabbar" do %>

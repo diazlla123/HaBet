@@ -17,7 +17,9 @@
         <div class="member-card-row">
           <!-- Avatar Column -->
           <div class="avatar-column">
-            <i class="fa-solid fa-user avatar-icon"></i>
+            <% if current_user.photo.present? && current_user.photo.key.present? %>
+              <%= cl_image_tag(current_user.photo.key, class: "profile-picture", style: "width: 60px; height: 60px;") %>
+            <% end %>
           </div>
 
           <!-- Info Column -->
