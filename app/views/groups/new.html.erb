@@ -22,7 +22,7 @@
           <%= f.fields_for :tasks do |t| %>
             <div class="w-100 task-form" >
               <div class="row col-12" >
-                <div class="col-8">
+                <div class="col-8" data-new-task-target="taskName">
                   <%= t.input :name, required: true, input_html: { placeholder: 'Run', class: 'center-placeholder' }, label: false %>
                 </div>
                 <div class="col-2" id="quantity">
@@ -37,12 +37,13 @@
                 <div class="col-2">
                   <%= t.input :unit, required: true, input_html: { placeholder: 'Km', class: 'center-placeholder',  }, label: false %>
                 </div>
-                <button class="p-2 mt-1 me-2 btn d-none trash-new-task"
-                        data-new-task-target="deleteTask" data-action="click->new-task#removeTask">
-                  <i class="fa-solid fa-trash"></i>
+                <button class="btn d-none trash-new-task"
+                        data-new-task-target="deleteTask"
+                        data-action="click->new-task#removeTask">
+                  <div>
+                    <i class="fa-solid fa-trash"></i>
+                  </div>
                 </button>
-
-
               </div>
 
 
@@ -55,12 +56,8 @@
 
         <div class="d-flex justify-content-between w-100">
           <div class="col-12" data-new-task-target="addButton">
-            <button class="addTaskButton mb-4" data-action="click->new-task#addTask">Add task</button>
+            <button class="addTaskButton" data-action="click->new-task#addTask">Add task</button>
           </div>
-          <div class="col-5 d-none" data-new-task-target="toggleBtnRemove">
-            <button class="addTaskButton mb-4" data-action="click->new-task#toggleRemove">Remove tasks</button>
-          </div>
-
         </div>
       </div>
     </div>
@@ -81,8 +78,8 @@
           <%= p.input :name, required: true, input_html: { placeholder: 'Sanction for last place', class: 'center-placeholder' }, label: false %>
         </div>
       <% end %>
+      <%= f.input :photo, as: :file %>
     </div>
-
 
     <%= f.submit "Create Group", class:"drk-button"%>
   <% end %>

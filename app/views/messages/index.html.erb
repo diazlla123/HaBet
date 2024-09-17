@@ -1,12 +1,12 @@
 <section>
   <div class="chat-title">
     <div class="line-groups"></div>
-      <h2 class="section__h2--groups"><%= "#{@group.name}'s discussion" %></h2>
+      <h2 class="section__h2--groups"><%= "#{Group.find(@chat.group_id).name}" %></h2>
     <div class="line-groups"></div>
   </div>
 
 <div class="chat">
-  <%= turbo_stream_from "group_#{@group.id}_messages" %>
+  <%= turbo_stream_from "chat_#{@chat.id}_messages" %>
   <div id="messages" class="message">
     <% @messages.each do |message| %>
       <%= render "messages/message", message: message, current_user_id: current_user.id %>
@@ -15,7 +15,7 @@
 </div>
 
 <div class="send">
-<%= form_with(model: [@group, @message], url: group_messages_path(@group)) do |f| %>
+<%= form_with(model: [@chat, @message], url: chat_messages_path(@chat)) do |f| %>
   <div class="send-wrapper">
   <%= f.text_field :content, placeholder: "Message", class:"message-field" %>
   <%= f.submit "Send", class:"send-button" %>

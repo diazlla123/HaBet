@@ -5,8 +5,10 @@ class TasksController < ApplicationController
   end
 
   def create
+    @group = params[:group_id]
     @task = Task.new(task_params)
-    if @task.save!
+    @task.group_id = @group
+    if @task.save
       @members = Member.where(group: @task.group_id)
       @members.each do |member|
         progress = Progress.new(task_id: @task.id, member_id: member.id, completion: 0.00)
@@ -14,7 +16,7 @@ class TasksController < ApplicationController
       end
       redirect_to group_path(@task.group_id), notice: "New task created."
     else
-      render 'group', notice: "mamaste"
+      render partial: "shared/addnewtask", locals: { task: @task, group: @group }, status: :unprocessable_entity
     end
   end
 

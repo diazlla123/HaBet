@@ -1,0 +1,78 @@
+.task-view-container{
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.div-container-individual-task{
+  width: 100%;
+  height: auto;
+  background-color: #dddddda0;
+
+  border-radius: 0.5rem;
+  border: 1px solid #dddddda0;
+  padding: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  
+  svg{
+    color: #025951;
+  }
+
+  .title-container-individual-task{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #cdcbcb;
+
+    h5,p{
+      margin: 0;
+      padding: 0;
+    }
+    h5{
+      font-size: 1.2em;
+    }
+  }
+
+  .container-bar-progress-indivual-task {
+    width: inherit;
+    margin-top: 0.5rem;
+  
+    & + .container-bar-progress-indivual-task {
+      margin-top: 1.2rem;
+    }
+  }
+  
+  .header-container-progress-individual-task{
+    display: flex;
+    flex-direction: column;
+
+    .title-container-username-editprogress{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+
+      .username-container-indivual-task{
+        font-size: 1.2em;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+  .barprogress-task-indiviaul{
+    width: 100%;
+  }
+}
+.progress-bar{
+  height: auto;
+}

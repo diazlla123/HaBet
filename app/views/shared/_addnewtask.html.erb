@@ -1,11 +1,11 @@
 <div class="new-task">
-<%= simple_form_for [@group, @task] do |t| %>
+<%= simple_form_for @task, url: group_tasks_path(@group) do |t| %>
 
   <div class="new-task-wrapper">
     <%= t.input :name, required: true, input_html: { placeholder: 'Run', class: 'center-placeholder', id: 'task-name' }, label: false %>
     <%= t.input :quantity, required: true, input_html: { placeholder: '10', class: 'center-placeholder', id: 'task-quantity' }, label: false %>
     <%= t.input :unit, required: true, input_html: { placeholder: 'Km', class: 'center-placeholder', id: 'task-unit' }, label: false %>
-    <%= t.hidden_field :group_id, value: @group.id %>
+    <%= t.hidden_field :group_id, value: @group %>
   </div>
 
   <%= t.submit "Create Task", class: "btn btn-primary corpy-link-button-show-group", id:"new-task-button" %>

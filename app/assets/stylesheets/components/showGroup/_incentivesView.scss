@@ -1,0 +1,73 @@
+.target-rewards-container,
+.target-punishments-container{
+  width: 100%;
+  height: auto;
+  background-color: #dddddda0;
+
+  border-radius: 0.5rem;
+  border: 1px solid #dddddda0;
+  padding: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.target-rewards-container{
+  margin-bottom: 1rem;
+}
+.container-title-reward,
+.container-title-punishment{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #cdcbcb;
+
+  h5{
+    margin: 0;
+    padding: 0;
+  }
+  h5{
+    font-size: 1.2em;
+  }
+  svg{
+    color: #025951;
+  }
+}
+.add-group-reward,
+.add-group-punishment{
+  width: 100%;
+
+  .button-reward,
+  .button-punishment{
+    width: 100%;
+    text-align: center;
+    border-radius: 0.5rem;
+    border: none;
+    transition: all 0.3s ease;
+    font-weight: bold;
+
+    &:hover,
+    &:hover{
+      transform: scale(1.05);
+    }
+  }
+}
+.container-all-rewards,
+.container-all-punishments{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  p{
+    margin: 0;
+    padding: 0;
+    font-size: 1.2em;
+  }
+}
+
+@import "../showGroup/formsShow/formShow";
