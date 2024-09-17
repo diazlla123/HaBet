@@ -76,7 +76,7 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name,
+    params.require(:group).permit(:name, :photo,
                                   tasks_attributes:[:id, :name, :unit, :quantity, :_destroy],
                                   punishments_attributes: [:id, :name, :_destroy],
                                   rewards_attributes: [:id, :name, :_destroy])

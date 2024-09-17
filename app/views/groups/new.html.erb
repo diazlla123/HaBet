@@ -78,8 +78,8 @@
           <%= p.input :name, required: true, input_html: { placeholder: 'Sanction for last place', class: 'center-placeholder' }, label: false %>
         </div>
       <% end %>
+      <%= f.input :photo, as: :file %>
     </div>
-
 
     <%= f.submit "Create Group", class:"drk-button"%>
   <% end %>
