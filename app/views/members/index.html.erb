@@ -1,68 +1,67 @@
-<section class="member-detail my-2" data-controller="edit-members">
+<section class="member-detail" data-controller="edit-members">
 
-  <div class="d-flex justify-content-end d-none me-3" data-edit-members-target="toggable">
-    <div data-controller="group-member" data-group-member-group-id-value="<%= @group.id %>">
-      <%= render 'shared/linkShare' %>
-    </div>
+  <div class="section-title">
+    <div class="line"></div>
+    <h2 class="group-name"><%= Group.find(@members.first.group_id).name %></h2>
+    <div class="line"></div>
   </div>
 
-  <div class="section__title--groups m-2">
-    <div class="line-groups"></div>
-      <h2 class="section__h2--groups"><%= Group.find(@members.first.group_id).name %></h2>
-    <div class="line-groups"></div>
+  <div class="members-rank-title">
+    <h2>Members Rank</h2>
   </div>
 
-  <div class="d-flex w-100 justify-content-center mb-2">
-    <h2 class="form-title" >Members Rank</h2>
-  </div>
-
-
-  <div class="d-flex flex-column px-3" >
+  <div class="members-list">
     <% @sorted_positions.each_with_index do |user, index| %>
-      <div class="membercard mb-2" data-edit-members-target="memberCard">
-          <div class="container">
-            <div class="row align-items-center">
-              <div class="col-2 ">
-                <i class="fa-solid fa-user members-avatar"></i>
-              </div>
-              <div class="col-10">
-                <div class="d-flex justify-content-between my-0">
-                  <h5 class="card-member-name"><%= user[:username] == current_user.username ?  "Your position" : user[:username] %></h5>
-
-                </div>
-
-                  <p class="my-0"><%= index + 1 %> Place!</p>
-                  <div class="progress my-0">
-                    <div class="progress-bar" role="progressbar" style="width: <%= user[:average_progress]*100.round(2) %>%">
-                      <%= (user[:average_progress]*100).round(2) %>%
-                    </div>
-                  </div>
-
-
-              </div>
-            </div>
-          </div>
-
-          <div class=<%= user[:username] == current_user.username ?  "" : "d-none"  %> data-edit-members-target="toggable">
-            <%= link_to member_path(Member.find_by(group_id: params[:group_id], user_id: user[:user_id])),
-                        data: { turbo_method: :delete,
-                                turbo_confirm: "Are you sure?"},
-                        class: "delete-button" do %>
-              <i class="fa-solid fa-trash"></i>
+      <div class="member-card" data-edit-members-target="memberCard">
+        <div class="member-card-row">
+          <!-- Avatar Column -->
+          <div class="avatar-column">
+            <% if current_user.photo.present? && current_user.photo.key.present? %>
+              <%= cl_image_tag(current_user.photo.key, class: "profile-picture", style: "width: 60px; height: 60px;") %>
             <% end %>
           </div>
 
+          <!-- Info Column -->
+          <div class="info-column">
+            <h5 class="member-name">
+              <%= user[:username] == current_user.username ? "Your position" : user[:username] %>
+            </h5>
+            <p class="rank">
+              <%= index + 1 %> Place!
+            </p>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar-container">
+              <div class="progress-bar" role="progressbar" style="width: <%= (user[:average_progress] * 100).round(2) %>%">
+                <%= (user[:average_progress] * 100).round(2) %>%
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- Toggable Delete Action -->
+        <div class="toggable-action" data-edit-members-target="toggable">
+          <%= link_to member_path(Member.find_by(group_id: params[:group_id], user_id: user[:user_id])),
+                      data: { turbo_method: :delete,
+                              turbo_confirm: "Are you sure?" },
+                      class: "delete-button " do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
+        </div>
+      </div>
     <% end %>
 
-    <% if  current_user.members.find_by(group_id: params[:group_id]).admin %>
-      <div class="d-flex w-100 justify-content-center mt-5">
-        <button class="btn btn-primary w-75" data-action="click->edit-members#toggleEdits">
-          Edit members
-        </button>
+    <!-- Toggable Section -->
+    <div class="toggable-section" data-edit-members-target="toggable">
+      <div data-controller="group-member" data-group-member-group-id-value="<%= @group.id %>">
+        <%= render 'shared/linkShare' %>
       </div>
+    </div>
 
-
+    <% if current_user.members.find_by(group_id: params[:group_id]).admin %>
+      <button class="edit-button" data-action="click->edit-members#toggleEdits" data-edit-members-target="editButton">
+        Edit members
+      </button>
     <% end %>
   </div>
 
@@ -111,6 +110,5 @@
       <% end %>
     </div>
   </div>
-
 
 </section>
