@@ -1,7 +1,8 @@
 .chat-container-group{
   width: 90vw;
   height: auto;
-  background-color: aqua;
+  padding-top: 1rem;
+  padding-bottom: 5rem;
 }
 .chat-title {
   background: white;
@@ -76,6 +77,8 @@
   right: 0px;
   width: 100%;
 
+  padding-bottom: 3rem;
+
   .send-wrapper {
     display: flex;
     align-items: center;
@@ -85,26 +88,52 @@
 
   .message-field {
     flex-grow: 1;
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
     border: none;
     border-radius: 0.5rem;
+
+    &:focus {
+        color: var(--bs-body-color);
+        background-color: var(--bs-body-bg);
+        border-color: #81aca8;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba(2, 89, 81, 0.25);    
+    }
     // box-sizing: border-box;
   }
 
   .send-button {
     width: 4rem;
-    height: 2.75rem;
+    height: 2.5rem;
     border-radius: 0.5rem;
+    padding: 0.5rem;
     font-weight: bold;
     font-size: 0.8em;
     border: none;
     text-decoration: none;
     text-align: center;
     transition: all 0.3s ease;
-    background-color: #04ad9e;
+    background-color: #025951;
     color: white;
+  }
+}
+.container-chat-individual{
+  width: 90vw;
+  height: auto;
+  padding-top: 1rem;
+  padding-bottom: 5rem;
+}
+.center-placeholder{
+  text-align: center;
+  background-color: #D9D9D9;
+
+  &::placeholder {
+    color:#025951;
+    opacity: 0.5;
+  }
+
+  &:focus::placeholder {
+    opacity: 0;
   }
 }

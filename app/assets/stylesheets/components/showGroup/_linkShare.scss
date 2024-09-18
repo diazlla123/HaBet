@@ -40,7 +40,7 @@
 .share-show-group-links{
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 
   #linkToCopy {
     width: 100%;
@@ -48,7 +48,7 @@
     padding: 0.5rem;
     color: #025951;
     text-align: center;
-    margin-bottom: 1rem;
+
   }
   .corpy-link-button-show-group,
   .go-back-button-show-group{

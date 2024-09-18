@@ -9,6 +9,7 @@
   border-top: 2px solid #054d4a;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   box-sizing: border-box;
 }
 
@@ -31,7 +32,7 @@
   text-decoration: none;
 }
 
-.button_tabbar i {
+.button_tabbar svg {
   font-size: 20px;
   color: #04AD9E;
   margin: 0;
