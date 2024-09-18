@@ -3,6 +3,8 @@
 <div class="profile-desc">
   <% if current_user.photo.present? && current_user.photo.key.present? %>
     <%= cl_image_tag(current_user.photo.key, class: "profile-picture") %>
+  <% else %>
+    <%= image_tag "user-solid.svg", class: "profile-picture" %>
   <% end %>
 
   <div class="profile-text">

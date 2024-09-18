@@ -24,7 +24,6 @@ class MessagesController < ApplicationController
         @read = Read.new(message_id: @new_message.id, member_id: member.id)
         @read.save!
       end
-      
       redirect_to chat_messages_path(@chat.id)
     else
       render "groups/index", status: :unprocessable_entity
