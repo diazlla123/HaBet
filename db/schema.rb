@@ -55,16 +55,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_222557) do
     t.string "name", null: false
   end
 
-  create_table "locations", force: :cascade do |t|
-    t.float "latitude"
-    t.float "longitude"
-    t.bigint "member_id", null: false
-    t.datetime "recorded_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["member_id"], name: "index_locations_on_member_id"
-  end
-
   create_table "member_punishments", force: :cascade do |t|
     t.bigint "member_id", null: false
     t.bigint "punishment_id", null: false
@@ -173,7 +163,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_222557) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chats", "groups"
-  add_foreign_key "locations", "members"
   add_foreign_key "member_punishments", "members"
   add_foreign_key "member_punishments", "punishments"
   add_foreign_key "member_rewards", "members"
