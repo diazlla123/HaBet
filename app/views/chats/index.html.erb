@@ -15,7 +15,7 @@
       <h3><%= group.name %></h3>
     </div>
 
-    <div class="count d-none">
+    <div class="count">
       <% member =  Member.find_by(user_id: current_user.id, group_id: group.id) %>
       <% messages = Message.where(chat_id: chat.id) %>
       <% reads = Read.where(member_id: member.id, message_id: messages.select(:id)) %>
