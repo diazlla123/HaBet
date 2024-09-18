@@ -3,18 +3,13 @@
     <i class="fas fa-home"></i>
   <% end %>
 
-  <%= link_to new_group_path, class: "button_tabbar" do %>
+  <%= link_to chats_path, class: "button_tabbar" do %>
     <i class="fas fa-comment"></i>
   <% end %>
 
   <%= link_to new_group_path, class: "button_tabbar" do %>
     <i class="fas fa-plus-circle"></i>
   <% end %>
-
-  <%= link_to groups_path, class: "button_tabbar" do %>
-    <i class="fas fa-comment"></i>
-  <% end %>
-
 
   <% if user_signed_in? %>
     <%= link_to member_path(current_user.id), class: "button_tabbar" do %>
