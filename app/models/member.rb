@@ -21,6 +21,12 @@ class Member < ApplicationRecord
 
   before_create :assign_random_color
 
+  def sorted_positions
+    tasks = Task.where(group_id: group.id)
+    ranking_calculation = RankingCalculation.new(tasks, group.id)
+    ranking_calculation.position_table
+  end
+
   private
 
   def assign_random_color

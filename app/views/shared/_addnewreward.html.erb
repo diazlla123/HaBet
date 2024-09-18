@@ -1,7 +1,7 @@
 <div class="div-container-simple-form-reward">
   <%= simple_form_for [@group, @reward], url: group_reward_path(@group, @group.rewards[0].id), html: { class: "form-simple-reward" }, method: :patch do |r| %>
     <%= r.input :name, required: true, placeholder: @group.rewards[0].name, 
-                input_html: { class: "input-newreward" }, 
+                input_html: { class: "center-placeholder" }, 
                 label_html: { class: "label-reward-name" },
                 label: "New reward" %>
     <%= r.hidden_field :group_id, value: @group.id %>
