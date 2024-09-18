@@ -35,18 +35,23 @@ class ProgressesController < ApplicationController
   private
 
   def check_punishments_and_rewards(member, group)
-    # Calculate the member's average completion across all tasks in the group
-    total_completion = member.progresses.joins(:task).where(tasks: { group_id: group.id }).average(:completion) || 0.0
-
-    # ask my group to change this logic for assign pushiments and rewards
-    # Check for punishment if any task completion is below the threshold
-    if member.progresses.joins(:task).where(tasks: { group_id: group.id }).where('completion < ?', 50.0).exists?
-      assign_punishment(member, group)
+    # Calculate average completion for all members in the group
+    member_progress = group.members.includes(:progresses).map do |m|
+      avg_completion = m.progresses.joins(:task).where(tasks: { group_id: group.id }).average(:completion) || 0.0
+      { member: m, average_completion: avg_completion }
     end
-
-    # Check for reward if total average completion is 100%
-    if total_completion >= 100.0
-      assign_reward(member, group)
+    # Sort members by their average completion in descending order
+    sorted_members = member_progress.sort_by { |mp| -mp[:average_completion] }
+    # Find the member in the first position (highest average completion)
+    top_member = sorted_members.first
+    # Check if the top member has reached 100% average completion
+    if top_member[:average_completion] >= 100.0
+      # Find the member in the last position (lowest average completion)
+      last_member = sorted_members.last
+      # Assign punishment to the last member if not already assigned
+      assign_punishment(last_member[:member], group)
+      # Assign reward to the top member if not already assigned
+      assign_reward(top_member[:member], group)
     end
   end
 

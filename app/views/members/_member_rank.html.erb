@@ -1,0 +1,39 @@
+<% sorted_positions.each_with_index do |user, index| %>
+  <div class="member-card" data-edit-members-target="memberCard">
+    <div class="member-card-row">
+      <!-- Avatar Column -->
+      <div class="avatar-column">
+        <% if member_user.photo.attached? %>
+          <%= cl_image_tag(member_user.photo.key, class: "profile-picture", style: "width: 60px; height: 60px;") %>
+        <% end %>
+      </div>
+
+      <!-- Info Column -->
+      <div class="info-column">
+        <h5 class="member-name">
+          <%= user[:username] == member_user.username ? "Your position" : user[:username] %>
+        </h5>
+        <p class="rank">
+          <%= index + 1 %> Place!
+        </p>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar-container">
+          <div class="progress-bar" role="progressbar" style="width: <%= user[:average_progress]*100.round(2) %>%">
+            <%= (user[:average_progress]*100).round(2) %>%
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toggable Delete Action -->
+    <div class="toggable-action" data-edit-members-target="toggable">
+      <%= link_to member_path(Member.find_by(group_id: group_id, user_id: user[:user_id])),
+                  data: { turbo_method: :delete,
+                          turbo_confirm: "Are you sure?" },
+                  class: "delete-button " do %>
+        <i class="fa-solid fa-trash"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>
