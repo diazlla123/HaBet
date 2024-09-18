@@ -40,7 +40,7 @@ class PunishmentsController < ApplicationController
   private
 
   def punishment_params
-    params.require(:punishment).permit(:name)
+    params.require(:punishment).permit(:name, :group_id)
   end
 
 end
