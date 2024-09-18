@@ -5,6 +5,7 @@
 
   <%= link_to chats_path, class: "button_tabbar" do %>
     <i class="fas fa-comment"></i>
+    <div class="tabbar-count"><%= unread_message_count %></div>
   <% end %>
 
   <%= link_to new_group_path, class: "button_tabbar" do %>
