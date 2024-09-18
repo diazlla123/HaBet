@@ -1,7 +1,7 @@
 <div class="div-container-simple-form-punishment">
   <%= simple_form_for [@group, @punishment], url: group_punishment_path(@group, @group.punishments[0].id), html: { class: "form-simple-punishment" }, method: :patch do |p| %>
     <%= p.input :name, required: true, placeholder: @group.punishments[0].name,
-                input_html: { class: "input-newpunishment" },
+                input_html: { class: "center-placeholder" },
                 label_html: { class: "label-punishment-name" },
                 label: "New punishment" %>
     <%= p.hidden_field :group_id, value: @group.id %>
