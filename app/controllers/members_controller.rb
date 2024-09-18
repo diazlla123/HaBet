@@ -23,6 +23,14 @@ class MembersController < ApplicationController
         progress.save
       end
 
+      ### Crea nuevo Read para cada mensage en el chat de grupo
+      chat = Chat.find_by(group_id: @group.id)
+      @messages = Message.where(chat_id: chat.id)
+      @messages.each do |message|
+        read = Read.new(message_id: message.id, member_id: @member.id)
+        read.save
+      end
+
       redirect_to group_path(@group)
     else
       render "groups/show", status: :unprocessable_entity

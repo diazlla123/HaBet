@@ -1,7 +1,7 @@
 class ChatsController < ApplicationController
   def index
     @groups = Group.joins(:members).where(members: { user_id: current_user.id })
-    @member = Member.where(user_id: current_user.id)
+    @members = Member.where(user_id: current_user.id)
   end
 
   def show
