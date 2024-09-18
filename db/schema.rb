@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_17_222557) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_17_195019) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,6 +55,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_222557) do
     t.string "name", null: false
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.float "latitude"
+    t.float "longitude"
+    t.bigint "member_id", null: false
+    t.datetime "recorded_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_locations_on_member_id"
+  end
+
   create_table "member_punishments", force: :cascade do |t|
     t.bigint "member_id", null: false
     t.bigint "punishment_id", null: false
@@ -96,15 +106,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_222557) do
     t.index ["member_id"], name: "index_messages_on_member_id"
   end
 
-  create_table "notifications", force: :cascade do |t|
-    t.bigint "group_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "content"
-    t.string "category"
-    t.index ["group_id"], name: "index_notifications_on_group_id"
-  end
-
   create_table "progresses", force: :cascade do |t|
     t.float "completion"
     t.bigint "task_id", null: false
@@ -121,17 +122,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_222557) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_punishments_on_group_id"
-  end
-
-  create_table "reads", force: :cascade do |t|
-    t.bigint "member_id", null: false
-    t.integer "displayed", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "message_id"
-    t.boolean "read", default: false
-    t.index ["member_id"], name: "index_reads_on_member_id"
-    t.index ["message_id"], name: "index_reads_on_message_id"
   end
 
   create_table "rewards", force: :cascade do |t|
@@ -172,6 +162,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_222557) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chats", "groups"
+  add_foreign_key "locations", "members"
   add_foreign_key "member_punishments", "members"
   add_foreign_key "member_punishments", "punishments"
   add_foreign_key "member_rewards", "members"
@@ -180,12 +171,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_222557) do
   add_foreign_key "members", "users"
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "members"
-  add_foreign_key "notifications", "groups"
   add_foreign_key "progresses", "members"
   add_foreign_key "progresses", "tasks"
   add_foreign_key "punishments", "groups"
-  add_foreign_key "reads", "members"
-  add_foreign_key "reads", "messages"
   add_foreign_key "rewards", "groups"
   add_foreign_key "tasks", "groups"
 end
