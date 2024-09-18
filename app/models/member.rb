@@ -10,7 +10,6 @@ class Member < ApplicationRecord
   has_many :punishments, through: :member_punishments
   has_many :member_rewards, dependent: :destroy
   has_many :rewards, through: :member_rewards
-
   has_one_attached :photo
 
   # validates :user_id, uniqueness: true
