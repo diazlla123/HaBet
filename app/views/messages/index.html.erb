@@ -12,7 +12,9 @@
       <%= render "messages/message", message: message, current_user_id: current_user.id %>
       <% current_member = Member.find_by(user_id: current_user.id, group_id: @chat.group_id) %>
       <% read = Read.find_by(member_id: current_member.id, message_id: message.id) %>
-      <% read.update(read: true) unless read.read? %>
+      <% if current_user.id == current_member.user_id %>
+        <% read.update(read: true) unless read.read? %>
+      <% end %>
     <% end %>
   </div>
 </div>
