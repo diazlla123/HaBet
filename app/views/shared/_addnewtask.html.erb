@@ -1,5 +1,5 @@
 <div class="new-task">
-<%= simple_form_for @task, url: group_tasks_path(@group) do |t| %>
+<%= simple_form_for @task, html: { class: "form-newtask-showview" } ,url: group_tasks_path(@group) do |t| %>
 
   <div class="new-task-wrapper">
     <%= t.input :name, required: true, input_html: { placeholder: 'Run', class: 'center-placeholder', id: 'task-name' }, label: false %>
