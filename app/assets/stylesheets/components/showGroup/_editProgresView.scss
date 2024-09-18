@@ -1,0 +1,39 @@
+.container-edit-progress{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: normal;
+  margin-top: 1rem;
+  gap: 0.5rem;
+  background-color: #ccc;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+
+  h5,p{
+    margin: 0;
+    padding: 0;
+  }
+}
+.edit-container{
+  width: 100%;
+  height: auto;
+}
+.container-editprogress-bar{
+  width: 100%;
+  margin-top: 0.5rem;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.header-container-progress-update{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -2,7 +2,7 @@
   -webkit-appearance: none;
   width: 100%;
   height: 5px;
-  background: lightgreen;
+  background: #00967a;
   outline: none;
   border-radius: 5px;
 }
@@ -10,7 +10,7 @@
 .edit-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  background-color: #04AD9E;
+  background-color: #00967a;
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -20,13 +20,13 @@
 }
 
 .edit-slider::-webkit-slider-runnable-track {
-  background: #04AD9E;
+  background: #00967a;
   height: 5px;
   border-radius: 5px;
 }
 
 .edit-slider::-moz-range-thumb {
-  background-color: #04AD9E;
+  background-color: #00967a;
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -35,25 +35,25 @@
 }
 
 .edit-slider::-moz-range-track {
-  background: lightgreen;
+  background: #00967a;
   height: 5px;
   border-radius: 5px;
 }
 
 .btn-update {
-  width: 60%;
-  padding: 10px;
-  background-color: #04AD9E;
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #00967a;
   color: white;
   font-weight: bold;
   border: none;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .btn-update:hover {
-  background-color: #054d4a;
+  transform: scale(1.05);
+  background-color: #00967a;
   color: white;
 }
