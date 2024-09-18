@@ -2,11 +2,21 @@ class Progress < ApplicationRecord
   belongs_to :task
   belongs_to :member
 
+  # Broadcast for members ranking
   after_create_commit :broadcast_ranking
   after_update_commit :broadcast_ranking
 
+  # Broadcast for incentives
   after_create_commit :broadcast_incentives
   after_update_commit :broadcast_incentives
+
+  def member_punishments
+    member.member_punishments.includes(:punishment)
+  end
+
+  def member_rewards
+    member.member_rewards.includes(:reward)
+  end
 
   private
 
@@ -24,13 +34,4 @@ class Progress < ApplicationRecord
                         locals: { member_punishments: member_punishments, member_rewards: member_rewards, group: member.group }
   end
 
-  def member_punishments
-    member.user.members.find_by(group_id: member.group.id).member_punishments.includes(:punishment)
-    # member.member_punishments.includes(:punishment)
-  end
-
-  def member_rewards
-    member.user.members.find_by(group_id: member.group.id).member_rewards.includes(:reward)
-    # member.member_punishments.includes(:punishment)
-  end
 end
