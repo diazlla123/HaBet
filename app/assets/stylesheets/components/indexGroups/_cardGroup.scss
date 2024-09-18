@@ -8,7 +8,6 @@
 
   .card-group-title{
     width: 95%;
-    margin-left: 0.5rem;
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -17,10 +16,10 @@
   .picture-profile-group{
     width: 100px;
     height: 100%;
-    // margin-right: 20px;
+    margin-right: 20px;
     padding: 0;
-    // border-top-left-radius: 0.5rem;
-    // border-bottom-left-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
     object-fit: cover;
   }
 

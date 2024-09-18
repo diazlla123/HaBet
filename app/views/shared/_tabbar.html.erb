@@ -9,9 +9,8 @@
   <% end %>
 
   <%= link_to new_group_path, class: "button_tabbar" do %>
-    <i class="fas fa-plus"></i>
+    <i class="fas fa-plus-circle"></i>
   <% end %>
-
 
   <% if user_signed_in? %>
     <%= link_to member_path(current_user.id), class: "button_tabbar" do %>
