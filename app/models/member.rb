@@ -2,13 +2,15 @@ class Member < ApplicationRecord
   belongs_to :user
   belongs_to :group
   has_many :progresses, dependent: :destroy
+  has_many :reads, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
-  ### added to make the pushinments and rewards tracking feacture 
+  ### added to make the pushinments and rewards tracking feacture
   has_many :member_punishments, dependent: :destroy
   has_many :punishments, through: :member_punishments
   has_many :member_rewards, dependent: :destroy
   has_many :rewards, through: :member_rewards
-  
+
   has_one_attached :photo
 
   # validates :user_id, uniqueness: true
