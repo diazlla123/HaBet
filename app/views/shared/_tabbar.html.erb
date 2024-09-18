@@ -16,6 +16,8 @@
     <%= link_to member_path(current_user.id), class: "button_tabbar" do %>
       <% if current_user.photo.present? && current_user.photo.key.present? %>
         <%= cl_image_tag(current_user.photo.key, class: "profileimg") %>
+      <% else %>
+        <i class="fa-solid fa-user"></i>
       <% end %>
     <% end %>
   <% else %>
