@@ -13,6 +13,11 @@
   transition: all 0.3s ease;
   background-color: #012623;
   color: white;
+  
+  &:hover,
+  &:hover{
+    transform: scale(1.05);
+  }
 }
 
 .create-group-index {
@@ -28,6 +33,6 @@
 }
 
 .button-delete-group-toogle.active-toggle{
-  background-color: #04AD9E;
+  background-color: #00967a;
   transform: none;
 }
