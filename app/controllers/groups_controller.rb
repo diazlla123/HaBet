@@ -14,6 +14,8 @@ class GroupsController < ApplicationController
     @task = Task.new
     @reward = Reward.new
     @punishment = Punishment.new
+    ranking_calculation = RankingCalculation.new(@tasks, @group.id)
+    @my_index = ranking_calculation.my_index(current_user.username)
     # For progresses, we're going to find each progress in the view directly
   end
 
