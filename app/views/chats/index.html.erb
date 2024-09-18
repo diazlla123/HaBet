@@ -7,10 +7,19 @@
 <div class="container-chats">
 <% @groups.each do |group| %>
   <div class="card-group">
-    <%= link_to chat_messages_path(Chat.find_by(group_id: group.id).id), class: "card-group-title" do %>
+    <% chat = Chat.find_by(group_id: group.id) %>
+    <%= link_to chat_messages_path(chat.id), class: "card-group-title" do %>
     <%= image_tag("fotox.webp", class: "picture-profile-group") %>
     <div class="name-group-description">
       <h3><%= group.name %></h3>
+    </div>
+
+    <div class="count d-none">
+      <% member =  Member.find_by(user_id: current_user.id, group_id: group.id) %>
+      <% messages = Message.where(chat_id: chat.id) %>
+      <% reads = Read.where(member_id: member.id, message_id: messages.select(:id)) %>
+      <% unreads = reads.count { |read| !read.read } %>
+      <%=" #{unreads} " unless unreads.zero? %>
     </div>
   </div>
   <% end %>

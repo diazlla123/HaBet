@@ -3,12 +3,12 @@
   height: auto;
 
   padding-top: 1rem;
+  padding-bottom: 5rem;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
 
   .title-group-detail{
     width: inherit;
@@ -39,6 +39,7 @@
     }
 
     .title-group-detail-name{
+      font-weight: bold;
       padding: 0rem 0.5rem;
       margin: 0;
     }
@@ -152,4 +153,5 @@
 @import "../components/showGroup/buttonsShow/buttonsShow";
 @import "../components/showGroup/taskView";
 @import "../components/showGroup/positionView";
-@import "../components/showGroup/incentivesView"
+@import "../components/showGroup/incentivesView";
+@import "../components/showGroup/editProgresView";

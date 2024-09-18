@@ -4,14 +4,19 @@
 }
 .form-simple-reward,
 .form-simple-punishment{
+  margin-top: 1rem;
+
   width: 100% !important;
-  padding: 0.5rem 0rem !important;
+  padding: 0.5rem !important;
   align-items: normal !important;
+
+  background-color: #ccc;
+  border-radius: 0.5rem;
 }
 .button-update-reward,
 .button-update-punishment{
   width: 100%;
-  padding: 6px 12px;
+  padding: 0.5rem;
   text-align: center;
   border-radius: 0.5rem;
   border: none;

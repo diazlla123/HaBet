@@ -2,7 +2,7 @@
 
   <div class="section-title">
     <div class="line"></div>
-    <h2 class="group-name"><%= Group.find(@members.first.group_id).name %></h2>
+    <h2 class="group-name"><%= @group.name %></h2>
     <div class="line"></div>
   </div>
 
@@ -11,102 +11,30 @@
   </div>
 
   <div class="members-list">
-    <% @sorted_positions.each_with_index do |user, index| %>
-      <div class="member-card" data-edit-members-target="memberCard">
-        <div class="member-card-row">
-          <!-- Avatar Column -->
-          <div class="avatar-column">
-            <% if current_user.photo.present? && current_user.photo.key.present? %>
-              <%= cl_image_tag(current_user.photo.key, class: "profile-picture", style: "width: 60px; height: 60px;") %>
-            <% end %>
-          </div>
 
-          <!-- Info Column -->
-          <div class="info-column">
-            <h5 class="member-name">
-              <%= user[:username] == current_user.username ? "Your position" : user[:username] %>
-            </h5>
-            <p class="rank">
-              <%= index + 1 %> Place!
-            </p>
+    <%= turbo_stream_from "group_#{@group.id}_rank" %>
+    <div id="group_ranking" class="w-100">
+      <%= render 'member_rank', sorted_positions: @sorted_positions, member_user: current_user, group_id: @group.id %>
+    </div>
 
-            <!-- Progress Bar -->
-            <div class="progress-bar-container">
-              <div class="progress-bar" role="progressbar" style="width: <%= (user[:average_progress] * 100).round(2) %>%">
-                <%= (user[:average_progress] * 100).round(2) %>%
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Toggable Delete Action -->
-        <div class="toggable-action" data-edit-members-target="toggable">
-          <%= link_to member_path(Member.find_by(group_id: params[:group_id], user_id: user[:user_id])),
-                      data: { turbo_method: :delete,
-                              turbo_confirm: "Are you sure?" },
-                      class: "delete-button " do %>
-            <i class="fa-solid fa-trash"></i>
-          <% end %>
-        </div>
+    <div class="toggable-section" data-edit-members-target="toggable">
+      <div data-controller="group-member" data-group-member-group-id-value="<%= @group.id %>">
+        <%= render 'shared/linkShare' %>
       </div>
+    </div>
+
+    <% if current_user.members.find_by(group_id: params[:group_id]).admin %>
+      <button class="edit-button" data-action="click->edit-members#toggleEdits" data-edit-members-target="editButton">
+        Edit members
+      </button>
     <% end %>
 
-  <div class="toggable-section" data-edit-members-target="toggable">
-    <div data-controller="group-member" data-group-member-group-id-value="<%= @group.id %>">
-      <%= render 'shared/linkShare' %>
-    </div>
   </div>
 
-  <% if current_user.members.find_by(group_id: params[:group_id]).admin %>
-    <button class="edit-button" data-action="click->edit-members#toggleEdits" data-edit-members-target="editButton">
-      Edit members
-    </button>
-  <% end %>
-
-  </div>
-  <!-- Punishments Card -->
-  <div class="card my-3">
-    <div class="card-header">
-      Your Punishments in This Group
-    </div>
-    <div class="card-body">
-      <% if @member_punishments.any? %>
-        <% @member_punishments.each do |mp| %>
-          <div class="punishment-item">
-            <strong><%= mp.punishment.name %></strong>
-            <p>Status: <%= mp.status.capitalize %></p>
-            <% if mp.pending? %>
-              <%= button_to 'Mark as Done', group_member_member_punishment_path(@group, mp.member, mp), method: :patch, class: 'btn btn-warning btn-sm' %>
-            <% end %>
-          </div>
-          <hr>
-        <% end %>
-      <% else %>
-        <p>You have no punishments.</p>
-      <% end %>
-    </div>
+  <%= turbo_stream_from "group_#{@group.id}_incentives" %>
+  <div id="member_incentives" class="w-100">
+    <%= render 'incentives', member_punishments: @member_punishments, member_rewards: @member_rewards, group: @group %>
   </div>
 
-  <!-- Rewards Card -->
-  <div class="card my-3">
-    <div class="card-header">
-      Your Rewards in This Group
-    </div>
-    <div class="card-body">
-      <% if @member_rewards.any? %>
-        <% @member_rewards.each do |mr| %>
-          <div class="reward-item">
-            <strong><%= mr.reward.name %></strong>
-            <p>Status: <%= mr.status.capitalize %></p>
-            <% if mr.available? %>
-              <%= button_to 'Claim Reward', group_member_member_reward_path(@group, mr.member, mr), method: :patch, class: 'btn btn-success btn-sm' %>
-            <% end %>
-          </div>
-          <hr>
-        <% end %>
-      <% else %>
-        <p>You have no rewards.</p>
-      <% end %>
-    </div>
-  </div>
+
 </section>

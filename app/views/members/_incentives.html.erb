@@ -1,0 +1,82 @@
+
+<section class="rewards-punishments-container">
+  <div class="title-group-detail">
+    <div class="line-groups"></div>
+      <h3 class="title-group-detail-name">
+        Incentives
+      </h3>
+    <div class="line-groups"></div>
+  </div>
+
+  <div class="target-rewards-container">
+    <div class="container-title-reward">
+      <h5 class="title-reward">
+        Your Rewards
+      </h5>
+      <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-award"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 9m-6 0a6 6 0 1 0 12 0a6 6 0 1 0 -12 0" /><path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889" /><path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889" /></svg>
+    </div>
+
+    <div class="container-all-rewards">
+
+      <!-- Punishments Card -->
+      <div class="card my-3">
+        <div class="card-body">
+          <% if member_punishments.any? %>
+            <% member_punishments.each do |mp| %>
+              <div class="punishment-item">
+                <strong><%= mp.punishment.name %></strong>
+                <p>Status: <%= mp.status.capitalize %></p>
+                <% if mp.pending? %>
+                  <%= button_to 'Mark as Done', group_member_member_punishment_path(group, mp.member, mp), method: :patch, class: 'btn btn-warning btn-sm' %>
+                <% end %>
+              </div>
+              <hr>
+            <% end %>
+          <% else %>
+            <p>You have no punishments.</p>
+          <% end %>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="target-punishments-container">
+    <div class="container-title-punishment">
+      <h5 class="title-punishment">
+        Your Punishments
+      </h5>
+      <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-alert-triangle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 9v4" /><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" /><path d="M12 16h.01" /></svg>
+    </div>
+
+    <div class="container-all-punishments">
+
+      <!-- Rewards Card -->
+      <div class="card my-3">
+        <div class="card-body">
+          <% if member_rewards.any? %>
+            <% member_rewards.each do |mr| %>
+              <div class="reward-item">
+                <strong><%= mr.reward.name %></strong>
+                <p>Status: <%= mr.status.capitalize %></p>
+                <% if mr.available? %>
+                  <%= button_to 'Claim Reward', group_member_member_reward_path(group, mr.member, mr), method: :patch, class: 'btn btn-success btn-sm' %>
+                <% end %>
+              </div>
+              <hr>
+            <% end %>
+          <% else %>
+            <p>You have no rewards.</p>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+  </div>
+</section>

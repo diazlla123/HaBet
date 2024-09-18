@@ -46,23 +46,24 @@
               <% progress = Progress.find_by(member_id: member.id, task_id: task.id) %>
               <div class="container-bar-progress-indivual-task" data-controller="edit-progress">
                 <div class="header-container-progress-individual-task">
-                  <div class="title-container-username-editprogress">
-                    <h5 class="username-container-indivual-task">
-                      <%= User.find(member.user_id).username %>
-                    </h5>
 
-                    <div class="icons-edit-progress" data-action="click->edit-progress#toggle">
-                      <% if progress.present? %>
-                        <% if progress.completion.round(2) >= 100.00 %>
-                          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-checkbox"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
-                        <% else %>
-                          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
-                        <% end %>
-                      <% end %>
-                    </div>
-                  </div>
 
                   <% if progress.member.user.id == current_user.id %>
+                    <div class="title-container-username-editprogress">
+                      <h5 class="username-container-indivual-task">
+                        <%= User.find(member.user_id).username %>
+                      </h5>
+
+                      <div class="icons-edit-progress" data-action="click->edit-progress#toggle">
+                        <% if progress.present? %>
+                          <% if progress.completion.round(2) >= 100.00 %>
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-checkbox"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
+                          <% else %>
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
                     <div class="barprogress-task-indiviaul">
                       <div class="progress" style="background-color: #bbbbbbdd;" data-action="click->edit-progress#toggle">
                         <div class="progress-bar" role="progressbar" style="width: <%= progress.completion.round(2) %>%;">
@@ -72,6 +73,19 @@
                     </div>
 
                   <% else %>
+                    <div class="title-container-username-editprogress">
+                      <h5 class="username-container-indivual-task">
+                        <%= User.find(member.user_id).username %>
+                      </h5>
+
+                      <div class="icons-edit-progress">
+                        <% if progress.present? %>
+                          <% if progress.completion.round(2) >= 100.00 %>
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-checkbox"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
                     <div class="barprogress-task-indiviaul">
                       <div class="progress" style="background-color: #bbbbbbdd;">
                         <div class="progress-bar" role="progressbar" style="width: <%= progress.completion.round(2) %>%;">
@@ -82,7 +96,7 @@
                   <% end %>
                 </div>
 
-                <div class="d-none" data-edit-progress-target="togglableElement">
+                <div class="d-none container-edit-progress" data-edit-progress-target="togglableElement">
                   <%= render "progresses/editprogress", progress: progress %>
                 </div>
               </div>

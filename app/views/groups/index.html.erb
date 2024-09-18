@@ -11,6 +11,8 @@
         <%= link_to group_path(group.id), class: "card-group-title" do %>
           <% if group.photo.present? && group.photo.key.present? %>
             <%= cl_image_tag(group.photo.key, class: "picture-profile-group") %>
+          <% else %>
+            <%= image_tag "Držení Za Ruce.jfif", class: "picture-profile-group" %>
           <% end %>
 
           <div class="name-group-description">
@@ -19,7 +21,7 @@
 
             <div class="progress w-100" style="background-color: #bbbbbbdd;" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
               <div class="progress-bar" style="width: <%= group.avg_completion_per_task_member %>%">
-                  <%= group.avg_completion_per_task_member %>
+                  <%= group.avg_completion_per_task_member.round(2) %>
               </div>
             </div>
 
@@ -42,8 +44,6 @@
       </div>
     <% end %>
   </div>
-
-  <%# link_to "Edit Group", edit_group_path(group.id) %>
 
   <div class="buttons-index-groups">
     <%= link_to "Create Group", new_group_path, class: "create-group-index" %>
