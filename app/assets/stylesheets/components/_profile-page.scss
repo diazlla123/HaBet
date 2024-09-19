@@ -1,13 +1,24 @@
+
+.the-profile{
+  width: 100%;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .profile-desc {
   display: flex;
   flex-direction: row;
   justify-content: start;
   border: none;
-  border-radius: 5px;
-  padding: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
   width: 100%;
+
+  background-color: #ccc;
+  padding: 1rem 0.5rem;
+  border-radius: 0.5rem;
 }
 
 .profile-picture {
@@ -41,10 +52,13 @@
   flex-direction: column;
   justify-content: start;
   border: none;
-  border-radius: 5px;
-  padding: 20px;
-  margin-bottom: 20px;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
   width: 100%;
+  
+  background-color: #ccc;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
 }
 
 
@@ -56,7 +70,6 @@
   border: none;
   transition: all 0.3s ease;
   font-weight: bold;
-  margin: 10px;
   background-color: #012623;
   color: white;
 }
@@ -69,13 +82,31 @@
   border: none;
   transition: all 0.3s ease;
   font-weight: bold;
-  margin: 10px;
+  margin-bottom: 1rem;
   background-color: #054d4a;
   color: white;
-
 }
+.btn-logout:hover {
+  background-color: #012623;
+  color: white;
+  transform: scale(1.05);
+}
+.btn-logout:active{
+  background-color: #012623;
+  color: white;
+}
+.btn-edit:hover {
+  background-color: #054d4a;
+  color: white;
+  transform: scale(1.05);
+}
+.btn-edit:active{
+  background-color: #054d4a;
+  color: white;
+}
+
 .progress-bar {
-  background-color: #04ad9e; /* The color of the progress */
+  background-color: #6bb8b1; /* The color of the progress */
   height: 20px;
 }
 
