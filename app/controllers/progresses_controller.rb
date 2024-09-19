@@ -76,5 +76,4 @@ class ProgressesController < ApplicationController
       # Optionally, send a notification to the member
     end
   end
-
 end

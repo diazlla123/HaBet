@@ -4,13 +4,6 @@ export default class extends Controller {
   static targets = ['memberCard', 'toggable', 'editButton']
 
   connect() {
-    // Ensure all toggle elements are hidden on load
-    this.toggableTargets.forEach(toggableE => {
-      if (!toggableE.classList.contains('d-none')) {
-        toggableE.classList.add('d-none')
-      }
-    });
-
     console.log("connected")
   }
 
