@@ -73,10 +73,10 @@
           <%= r.input :name, required: true, input_html: { placeholder: 'Reward for first place', class: 'center-placeholder' }, label: false %>
         </div>
       <% end %>
-      <h3>Sanctions</h3>
+      <h3>Punishments</h3>
       <%= f.fields_for :punishments do |p| %>
         <div class="row col-12">
-          <%= p.input :name, required: true, input_html: { placeholder: 'Sanction for last place', class: 'center-placeholder' }, label: false %>
+          <%= p.input :name, required: true, input_html: { placeholder: 'Punishment for last place', class: 'center-placeholder' }, label: false %>
         </div>
       <% end %>
       <div data-controller="upload-label">
