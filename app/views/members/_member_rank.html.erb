@@ -62,12 +62,11 @@
         </div>
       </div>
     </li>
-    <!-- THIRD PLACE -->
+
     <% if sorted_positions.length >= 3 %>
       <li class="podium-list">
         <div class="lead-cats">
 
-          <!-- Toggable Delete Action -->
           <div class="toggable-action d-none" data-edit-members-target="toggable">
             <%= link_to member_path(Member.find_by(group_id: group_id, user_id: sorted_positions[2][:user_id])),
                         data: { turbo_method: :delete,
@@ -93,14 +92,13 @@
   </ul>
 </div>
 
-<!-- MEMBERS CARDS-->
 
 <div class="board <%= "d-none" if sorted_positions.length < 4 %>">
   <ul id="leaderboard">
     <% sorted_positions.each_with_index do |user, index| %>
       <% if index >= 3 %>
         <li class="cat-item" data-edit-members-target="memberCard">
-          <!-- Avatar Column -->
+
           <div class="cat-item__photo">
             <div class="ranking"><%= user[:rank] %>th</div>
             <% if user[:user_id].photo.attached? %>
@@ -110,7 +108,6 @@
             <% end %>
           </div>
 
-          <!-- Info Column -->
           <div class="cat-item__info">
             <h4><%= user[:username] %></h4>
             <div class="cat-item__points">
@@ -124,7 +121,6 @@
             </div>
           </div>
 
-          <!-- Toggable Delete Action -->
           <div class="cat-item__points toggable-action d-none" data-edit-members-target="toggable">
             <%= link_to member_path(Member.find_by(group_id: group_id, user_id: user[:user_id])),
                         data: { turbo_method: :delete,
