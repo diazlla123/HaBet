@@ -145,7 +145,7 @@
 
           <div class="data-position-group-indivual">
             <p><%= @my_index %>'s Place</p>
-            <p>Out of <%= @members.size %></p>
+            <p>Out of <%= @members.size unless @members.nil? %></p>
           </div>
         </div>
     <% end %>
@@ -173,7 +173,7 @@
       <div class="container-all-rewards">
         <% @group.rewards.each do  |reward| %>
           <p>
-            - <%= reward.name %>
+            <%= reward.name %>
           </p>
         <% end %>
       </div>
@@ -184,7 +184,9 @@
           Change Reward
         </button>
         <div data-add-group-reward-target="togglableElement" class="d-none">
-          <%= render "shared/addnewreward", reward: @reward %>
+          <% unless @reward.nil? %>
+            <%= render "shared/addnewreward", reward: @reward %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -200,7 +202,7 @@
       <div class="container-all-punishments">
         <% @group.punishments.each do  |punishment| %>
           <p>
-            - <%= punishment.name %>
+            <%= punishment.name %>
           </p>
         <% end %>
       </div>
@@ -211,7 +213,9 @@
           Change Punishment
         </button>
         <div data-add-group-punishment-target="togglableElement" class="d-none">
-          <%= render "shared/addnewpunishment", punishment: @punishment %>
+          <% unless @punishment.nil? %>
+            <%= render "shared/addnewpunishment", punishment: @punishment %>
+          <% end %>
         </div>
     </div>
     </div>

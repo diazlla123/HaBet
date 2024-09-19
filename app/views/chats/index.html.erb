@@ -1,3 +1,4 @@
+<section class="chat-container-group">
 <div class="section__title--groups">
   <div class="line-groups"></div>
     <h2 class="section__h2--groups">Your chats</h2>
@@ -18,7 +19,7 @@
       <h3><%= group.name %></h3>
     </div>
 
-    <div class="count d-none">
+    <div class="count">
       <% member =  Member.find_by(user_id: current_user.id, group_id: group.id) %>
       <% messages = Message.where(chat_id: chat.id) %>
       <% reads = Read.where(member_id: member.id, message_id: messages.select(:id)) %>
@@ -29,3 +30,4 @@
   <% end %>
 <% end %>
 </div>
+</section>
