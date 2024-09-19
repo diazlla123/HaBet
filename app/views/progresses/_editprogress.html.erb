@@ -15,8 +15,8 @@
     <input type="range" name="new_progress" id="new_progress" min="0" max="<%= task.quantity %>"
            step="any" value="<%= (task.quantity * progress.completion / 100).round(1) %>"
            class="edit-slider"
-           oninput="document.getElementById('output').value = parseFloat(this.max - this.value).toFixed(1)">
-    <output id="output"><%= (task.quantity - (task.quantity * progress.completion / 100)).round(1) %></output>
+           oninput="document.getElementById('output<%= progress.id %>').value = parseFloat(this.max - this.value).toFixed(1)">
+    <output id="output<%= progress.id %>"><%= (task.quantity - (task.quantity * progress.completion / 100)).round(1) %></output>
     <%= f.submit 'Update progression', class: "btn btn-update" %>
   <% end %>
 </div>

@@ -6,14 +6,13 @@
     <meta name="turbo-cache-control" content="no-cache">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= favicon_link_tag "faviconHabet.ico" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload", media: "all" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <%= yield %>
-    <%= render "shared/flashes" %>
     <%= render "shared/tabbar" %>
   </body>
 </html>
