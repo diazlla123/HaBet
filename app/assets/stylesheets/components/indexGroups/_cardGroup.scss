@@ -1,72 +1,50 @@
-.card-group{
+.card-group {
   width: 100%;
   height: 7rem;
   display: flex;
   justify-content: space-between;
   border-radius: 0.5rem;
   background-color: #dddddda0;
-
-  .card-group-title{
-    width: 95%;
-    margin-left: 0.5rem;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-  }
-
-  .picture-profile-group{
-    width: 100px;
-    height: 100%;
-    // margin-right: 20px;
-    padding: 0;
-    // border-top-left-radius: 0.5rem;
-    // border-bottom-left-radius: 0.5rem;
-    object-fit: cover;
-  }
-
-  .button-delete-group{
-    width: 5%;
-    display: flex;
-    justify-content: center;
-    padding: 0.3rem 1.1rem 0rem 0rem;
-  }
-
-  .delete-button {
-    text-decoration: none;
-    transition: all 0.3s ease;
-
-    &:hover,
-    &:active {
-      transform: scale(0.9);
-    }
-  }
 }
 
-.name-group-description{
-  width: 100%;
-  height: 100%;
+.card-group-title {
+  width: calc(100% - 140px);
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+}
+
+.picture-profile-group {
+  flex-shrink: 0;
+  width: 100px;
+  height: 7rem;
+  margin-right: 20px;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  object-fit: cover;
+  object-position: center;
+}
+
+.button-delete-group {
+  width: 5%;
+  display: flex;
   justify-content: center;
   align-items: flex-start;
   gap: 0.5rem;
+  padding: 0.3rem 1.1rem 0 1rem;
 
   h3{
     padding: 0;
     margin: 0;
     font-size: 1.7em;
   }
-
-  p{
-    padding: 0;
-    margin: 0;
-    font-size: 1em;
-  }
+  
+.delete-button {
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-@media (min-width: 576px) {
-  .card-group {
-    display: flex;
-    flex-wrap: nowrap;
-  }
+.delete-button:hover,
+.delete-button:active {
+  transform: scale(0.9);
 }

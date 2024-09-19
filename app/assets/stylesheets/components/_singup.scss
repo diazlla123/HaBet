@@ -1,0 +1,27 @@
+.sign-in-container{
+  width: 90vw;
+  height: auto;
+
+  padding-top: 1rem;
+  padding-bottom: 5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  .container-title-habet{
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}
+.form-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+.form-inputs .required  {
+  margin-bottom: 0.5rem !important;
+}
