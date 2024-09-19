@@ -11,6 +11,7 @@
   .target-position{
     width: 100%;
     display: flex;
+    justify-content: space-evenly;
     height: 100%;
   }
   .icon-group-position{
@@ -27,6 +28,9 @@
     p{
       margin: 0;
       padding: 0;
+    }
+    p:nth-child(1){
+      font-size: 1.5em;
     }
   }
 }
