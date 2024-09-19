@@ -21,16 +21,16 @@
     align-items: center;
     position: relative;
 
-    &::before{
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #000000;
-      z-index: -1;
-    }
+    // &::before{
+    //   content: '';
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   right: 0;
+    //   bottom: 0;
+    //   background-color: #000000;
+    //   z-index: -1;
+    // }
 
     .line-members{
       flex-grow: 1;
@@ -104,4 +104,9 @@
     margin: 0;
     padding: 0;
   }
+}
+#group_ranking{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
