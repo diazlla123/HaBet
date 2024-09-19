@@ -1,7 +1,7 @@
-<section class="edit-section">
+<section class="sign-in-container">
   <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "simple_form" }) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
@@ -9,11 +9,11 @@
       <%= f.input :first_name,
                     require: true,
                     autofocus: true,
-                    input_html: { autocomplete: "first_name", placeholder: "John" } %>
+                    input_html: { autocomplete: "first_name", placeholder: "John", class: "form-control" } %>
         <%= f.input :last_name,
                     require: true,
                     autofocus: true,
-                    input_html: { autocomplete: "last_name", placeholder: "Doe" } %>
+                    input_html: { autocomplete: "last_name", placeholder: "Doe", class: "form-control" } %>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
@@ -22,20 +22,19 @@
       <%= f.input :password,
                   hint: "Leave it blank if you don't want to change it",
                   required: false,
-                  input_html: { autocomplete: "new-password" } %>
+                  input_html: { autocomplete: "new-password", class: "form-control" } %>
       <%= f.input :password_confirmation,
                   required: false,
-                  input_html: { autocomplete: "new-password" } %>
+                  input_html: { autocomplete: "new-password", class: "form-control" } %>
       <%= f.input :current_password,
                   hint: "We need your current password to confirm your changes",
                   required: true,
-                  input_html: { autocomplete: "current-password" } %>
+                  input_html: { autocomplete: "current-password", class: "form-control" } %>
       <%= f.input :photo, as: :file %>
 
     </div>
 
-    <%= f.button :submit, "Update", class: "btn btn-edit" %>
-    <%= link_to "Back", :back, class: "btn btn-logout pd-1" %>
+    <%= f.button :submit, "Update", class: "btn btn-submit" %>
 
   <% end %>
 </section>

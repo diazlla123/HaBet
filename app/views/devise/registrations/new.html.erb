@@ -14,7 +14,7 @@
                   required: true,
                   autofocus: true,
                   input_html: { autocomplete: "username", placeholder: "JohnDoe", class: "form-control" }, label: false %>
-      <h3 class="h3-sing-in">Frist Name</h3>
+      <h3 class="h3-sing-in">First Name</h3>
       <%= f.input :first_name,
                   required: true,
                   input_html: { autocomplete: "first_name", placeholder: "John", class: "form-control" }, label: false %>
@@ -43,6 +43,10 @@
       <%= f.button :submit, "Sign up", class: "btn btn-submit" %>
     </div>
   <% end %>
+
+  <div class="form-actions">
+    <%= render "devise/shared/links" %>
+  </div>
 </section>
 
 

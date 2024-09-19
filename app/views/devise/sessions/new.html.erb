@@ -4,7 +4,7 @@
     <p class="form-subtitle">Go further together</p>
   </div>
 
-  
+
   <h3 class="form-title">Sign In</h3>
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "simple_form" }) do |f| %>
     <div class="form-inputs">
@@ -12,19 +12,19 @@
       <%= f.input :email,
                   required: true,
                   autofocus: true,
-                  input_html: { autocomplete: "email", placeholder: "Username", class: "form-control" }, label: false %>
-  
+                  input_html: { autocomplete: "example@habet.com", placeholder: "email", class: "form-control" }, label: false %>
+
       <h3 class="h3-sing-in">Password</h3>
       <%= f.input :password,
                   required: true,
-                  input_html: { autocomplete: "current-password", placeholder: "Password", class: "form-control" }, label: false %>
+                  input_html: { autocomplete: "current-password", placeholder: "********", class: "form-control" }, label: false %>
     </div>
-  
+
     <div class="form-actions">
       <%= f.button :submit, "Sign In", class: "btn btn-submit" %>
     </div>
   <% end %>
-  
+
   <div class="form-actions">
     <%= render "devise/shared/links" %>
   </div>
