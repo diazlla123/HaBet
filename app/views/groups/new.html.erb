@@ -57,7 +57,7 @@
 
         <div class="d-flex justify-content-between w-100">
           <div class="col-12" data-new-task-target="addButton">
-            <button class="addTaskButton" data-action="click->new-task#addTask">Add task</button>
+            <button class="addTaskButton" data-action="click->new-task#addTask">Add another task</button>
           </div>
         </div>
       </div>
@@ -79,10 +79,13 @@
           <%= p.input :name, required: true, input_html: { placeholder: 'Sanction for last place', class: 'center-placeholder' }, label: false %>
         </div>
       <% end %>
-      <h3>Group Photo</h3>
-      <%= f.input :photo, as: :file, label: false, input_html: { class: 'center-placeholder' } %>
+      <div data-controller="upload-label">
+      <h3 >Group Photo</h3>
+        <%= f.label :photo, "Upload photo", class: 'custom-file-upload', data: { upload_label_target: 'Label' } %>
+        <%= f.input :photo, as: :file, label: false, input_html: { class: 'center-placeholder d-none', data: { upload_label_target: "inputField" , action: "input->upload-label#update"} } %>
+      </div>
     </div>
-    
+
     <%= f.submit "Create Group", class:"drk-button"%>
   <% end %>
   <%= link_to "Go back", root_path, class: "button-goback-newgroup" %>
