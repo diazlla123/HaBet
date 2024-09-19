@@ -1,0 +1,13 @@
+.delete-members-button {
+  width: 100%;
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: none;
+  transition: all 0.3s ease;
+  font-weight: bold;
+
+  &:hover{
+    transform: scale(1.05);
+  }
+}

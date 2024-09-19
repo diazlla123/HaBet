@@ -1,39 +1,140 @@
-<% sorted_positions.each_with_index do |user, index| %>
-  <div class="member-card" data-edit-members-target="memberCard">
-    <div class="member-card-row">
-      <!-- Avatar Column -->
-      <div class="avatar-column">
-        <% if member_user.photo.attached? %>
-          <%= cl_image_tag(member_user.photo.key, class: "profile-picture", style: "width: 60px; height: 60px;") %>
-        <% end %>
-      </div>
-
-      <!-- Info Column -->
-      <div class="info-column">
-        <h5 class="member-name">
-          <%= user[:username] %>
-        </h5>
-        <p class="rank">
-          <%= index + 1 %> Place!
-        </p>
-
-        <!-- Progress Bar -->
-        <div class="progress-bar-container">
-          <div class="progress-bar" role="progressbar" style="width: <%= user[:average_progress]*100.round(2) %>%">
-            <%= (user[:average_progress]*100).round(2) %>%
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Toggable Delete Action -->
-    <div class="toggable-action" data-edit-members-target="toggable">
-      <%= link_to member_path(Member.find_by(group_id: group_id, user_id: user[:user_id])),
-                  data: { turbo_method: :delete,
-                          turbo_confirm: "Are you sure?" },
-                  class: "delete-button " do %>
-        <i class="fa-solid fa-trash"></i>
-      <% end %>
-    </div>
+<% if sorted_positions[0][:average_progress] >= 1 %>
+  <div class="row justify-content-center my-2">
+    <div class="w-75"><div class="btn btn-primary delete-members-button">See your Incentives</div></div>
   </div>
 <% end %>
+
+
+
+<!-- MEMBERS PODIUM-->
+
+<div class="container-podium" id="app">
+<div class="leaders">
+  <ul id="topThreeList">
+    <!-- SECOND PLACE -->
+    <% if sorted_positions.length >= 2 %>
+      <li class="podium-list">
+        <div class="lead-cats">
+          <!-- Toggable Delete Action -->
+          <div class="toggable-action text-center d-none" data-edit-members-target="toggable">
+            <%= link_to member_path(Member.find_by(group_id: group_id, user_id: sorted_positions[1][:user_id])),
+                        data: { turbo_method: :delete,
+                                turbo_confirm: "Are you sure?" },
+                        class: "delete-button " do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          </div>
+          <% if sorted_positions[1][:user_id].photo.attached? %>
+            <%= cl_image_tag(sorted_positions[1][:user_id].photo.key, class: "lead-cats__photo") %>
+          <% else %>
+            <i class="fa-solid fa-user lead-cats__photo text-center mb-2" style= "color: <%= Member.find_by(group_id: group_id, user_id: sorted_positions[1][:user_id]).color %>; font-size:60px"></i>
+          <% end %>
+          <div class="podium pod-3">
+              <div class="ranking-lead">2</div>
+              <h4><%= sorted_positions[1][:username] %></h4>
+              <p class="podium-advance"><%= (sorted_positions[1][:average_progress]*100).round(2) %>%</p>
+          </div>
+        </div>
+      </li>
+    <% end %>
+
+    <!-- FIRTS PLACE -->
+    <li class="podium-list">
+      <div class="lead-cats">
+        <!-- Toggable Delete Action -->
+        <div class="toggable-action text-center d-none" data-edit-members-target="toggable">
+          <%= link_to member_path(Member.find_by(group_id: group_id, user_id: sorted_positions[0][:user_id])),
+                      data: { turbo_method: :delete,
+                              turbo_confirm: "Are you sure?" },
+                      class: "delete-button " do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
+        </div>
+        <% if sorted_positions[0][:user_id].photo.attached? %>
+          <%= cl_image_tag(sorted_positions[0][:user_id].photo.key, class: "lead-cats__photo") %>
+        <% else %>
+          <i class="fa-solid fa-user lead-cats__photo text-center mb-2" style= "color: <%= Member.find_by(group_id: group_id, user_id: sorted_positions[0][:user_id]).color %>; font-size:60px"></i>
+        <% end %>
+        <div class="podium pod-2">
+            <div class="ranking-lead">1</div>
+            <h4><%= sorted_positions[0][:username] %></h4>
+            <p class="podium-advance"><%= (sorted_positions[0][:average_progress]*100).round(2) %>%</p>
+        </div>
+      </div>
+    </li>
+    <!-- THIRD PLACE -->
+    <% if sorted_positions.length >= 3 %>
+      <li class="podium-list">
+        <div class="lead-cats">
+
+          <!-- Toggable Delete Action -->
+          <div class="toggable-action d-none" data-edit-members-target="toggable">
+            <%= link_to member_path(Member.find_by(group_id: group_id, user_id: sorted_positions[2][:user_id])),
+                        data: { turbo_method: :delete,
+                                turbo_confirm: "Are you sure?" },
+                        class: "delete-button " do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          </div>
+
+          <% if sorted_positions[2][:user_id].photo.attached? %>
+            <%= cl_image_tag(sorted_positions[2][:user_id].photo.key, class: "lead-cats__photo") %>
+          <% else %>
+            <i class="fa-solid fa-user lead-cats__photo text-center mb-2" style= "color: <%= Member.find_by(group_id: group_id, user_id: sorted_positions[2][:user_id]).color %>; font-size:60px"></i>
+          <% end %>
+          <div class="podium pod-1">
+              <div class="ranking-lead">3</div>
+              <h4><%= sorted_positions[2][:username] %></h4>
+              <p class="podium-advance"><%= (sorted_positions[2][:average_progress]*100).round(2) %>%</p>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<!-- MEMBERS CARDS-->
+
+<div class="board <%= "d-none" if sorted_positions.length < 4 %>">
+  <ul id="leaderboard">
+    <% sorted_positions.each_with_index do |user, index| %>
+      <% if index >= 3 %>
+        <li class="cat-item" data-edit-members-target="memberCard">
+          <!-- Avatar Column -->
+          <div class="cat-item__photo">
+            <div class="ranking"><%= user[:rank] %>th</div>
+            <% if user[:user_id].photo.attached? %>
+              <%= cl_image_tag(user[:user_id].photo.key) %>
+            <% else %>
+              <i class="fa-solid fa-user" style= "color: <%= Member.find_by(group_id: group_id, user_id: user[:user_id]).color %>; font-size:40px"></i>
+            <% end %>
+          </div>
+
+          <!-- Info Column -->
+          <div class="cat-item__info">
+            <h4><%= user[:username] %></h4>
+            <div class="cat-item__points">
+              <div class="progress-bar bar-members" role="progressbar" style="width: <%= user[:average_progress]*100.round(2) %>%; min-width: min-content;">
+                <% if user[:average_progress]*100 < 20  %>
+                  <%= (user[:average_progress]*100).round(0) %>%
+                <% else %>
+                  <%= (user[:average_progress]*100).round(2) %>%
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <!-- Toggable Delete Action -->
+          <div class="cat-item__points toggable-action d-none" data-edit-members-target="toggable">
+            <%= link_to member_path(Member.find_by(group_id: group_id, user_id: user[:user_id])),
+                        data: { turbo_method: :delete,
+                                turbo_confirm: "Are you sure?" },
+                        class: "delete-button " do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

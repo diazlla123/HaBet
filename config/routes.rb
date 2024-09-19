@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :members, only: [:create, :index, :edit] do
       resources :member_rewards, only: [:index, :update]
       resources :member_punishments, only: [:index, :update]
+      resources :reports, only: [:show]
     end
     resources :rewards, only: [:index, :update]
     resources :punishments, only: [:index, :update]
