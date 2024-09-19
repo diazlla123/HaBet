@@ -90,4 +90,18 @@
     }
   }
 }
+.members-list{
+  width: 100%;
+}
+.members-rank-title{
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
 
+  h2 {
+    font-size: 1.5em;
+    margin: 0;
+    padding: 0;
+  }
+}
