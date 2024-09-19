@@ -30,7 +30,12 @@
                   hint: "We need your current password to confirm your changes",
                   required: true,
                   input_html: { autocomplete: "current-password", class: "form-control" } %>
-      <%= f.input :photo, as: :file %>
+      <div data-controller="upload-label">
+      <h3 class="h3-sing-in" >Group Photo</h3>
+        <%= f.label :photo, "Upload photo", class: 'custom-file-upload', data: { upload_label_target: 'Label' } %>
+        <%= f.input :photo, as: :file, label: false, input_html: { class: 'center-placeholder d-none', data: { upload_label_target: "inputField" , action: "input->upload-label#update"} } %>
+      </div>
+    </div>
 
     </div>
 

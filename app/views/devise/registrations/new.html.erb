@@ -36,7 +36,10 @@
                   required: true,
                   hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                   input_html: { autocomplete: "new-password", placeholder: "Confirm your password", class: "form-control" }, label: false %>
-      <%= f.input :photo, as: :file %>
+      <h3 class="h3-sing-in" >Group Photo</h3>
+        <%= f.label :photo, "Upload photo", class: 'custom-file-upload', data: { upload_label_target: 'Label' } %>
+        <%= f.input :photo, as: :file, label: false, input_html: { class: 'center-placeholder d-none', data: { upload_label_target: "inputField" , action: "input->upload-label#update"} } %>
+      </div>
     </div>
 
     <div class="form-actions">
