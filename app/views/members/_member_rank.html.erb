@@ -16,14 +16,7 @@
       <li class="podium-list">
         <div class="lead-cats">
 
-          <div class="toggable-action text-center d-none" data-edit-members-target="toggable">
-            <%= link_to member_path(Member.find_by(group_id: group_id, user_id: sorted_positions[1][:user_id])),
-                        data: { turbo_method: :delete,
-                                turbo_confirm: "Are you sure?" },
-                        class: "delete-button " do %>
-              <i class="fa-solid fa-trash"></i>
-            <% end %>
-          </div>
+
           <% if sorted_positions[1][:user_id].photo.attached? %>
             <%= cl_image_tag(sorted_positions[1][:user_id].photo.key, class: "lead-cats__photo") %>
           <% else %>
@@ -42,14 +35,6 @@
     <li class="podium-list">
       <div class="lead-cats">
 
-        <div class="toggable-action text-center d-none" data-edit-members-target="toggable">
-          <%= link_to member_path(Member.find_by(group_id: group_id, user_id: sorted_positions[0][:user_id])),
-                      data: { turbo_method: :delete,
-                              turbo_confirm: "Are you sure?" },
-                      class: "delete-button " do %>
-            <i class="fa-solid fa-trash"></i>
-          <% end %>
-        </div>
         <% if sorted_positions[0][:user_id].photo.attached? %>
           <%= cl_image_tag(sorted_positions[0][:user_id].photo.key, class: "lead-cats__photo") %>
         <% else %>
@@ -67,14 +52,7 @@
       <li class="podium-list">
         <div class="lead-cats">
 
-          <div class="toggable-action d-none" data-edit-members-target="toggable">
-            <%= link_to member_path(Member.find_by(group_id: group_id, user_id: sorted_positions[2][:user_id])),
-                        data: { turbo_method: :delete,
-                                turbo_confirm: "Are you sure?" },
-                        class: "delete-button " do %>
-              <i class="fa-solid fa-trash"></i>
-            <% end %>
-          </div>
+          
 
           <% if sorted_positions[2][:user_id].photo.attached? %>
             <%= cl_image_tag(sorted_positions[2][:user_id].photo.key, class: "lead-cats__photo") %>
@@ -121,14 +99,7 @@
             </div>
           </div>
 
-          <div class="cat-item__points toggable-action d-none" data-edit-members-target="toggable">
-            <%= link_to member_path(Member.find_by(group_id: group_id, user_id: user[:user_id])),
-                        data: { turbo_method: :delete,
-                                turbo_confirm: "Are you sure?" },
-                        class: "delete-button " do %>
-              <i class="fa-solid fa-trash"></i>
-            <% end %>
-          </div>
+
         </li>
       <% end %>
     <% end %>
