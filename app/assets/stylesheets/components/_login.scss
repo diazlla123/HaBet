@@ -25,6 +25,7 @@ form.simple_form {
   background-color: #e8e8e8;
   text-align: left;
   font-size: 16px;
+  border-radius: 5px;
 }
 
 .simple_form .form-inputs .form-control:focus {
@@ -32,6 +33,7 @@ form.simple_form {
   box-shadow: none;
   background-color: #d0d0d0;
   border: 2px solid #054d4a;
+  border-radius: 5px;
 }
 
 .btn-submit {
@@ -154,7 +156,7 @@ form.simple_form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+
   .container-title-habet{
     width: 100%;
     margin-bottom: 2rem;
