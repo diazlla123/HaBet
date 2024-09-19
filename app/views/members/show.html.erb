@@ -31,7 +31,7 @@
       <h5>Total Progress: </h5>
       <div class="progress">
         <div class="progress-bar" role="progressbar" style="width: <%= [[(progress_sum || 0).round(2), 100].min, 0].max %>%;">
-          <%= (progress_sum || 0).round(2) %>% Complete
+          <%= (progress_sum || 0).round(2) %> %
         </div>
       </div>
     </div>

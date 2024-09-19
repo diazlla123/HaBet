@@ -1,5 +1,10 @@
 <section class="sign-in-container">
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  
+  <div class="section__title--groups">
+    <div class="line-groups"></div>
+      <h2 class="edit-title">Edit <%= resource_name.to_s.humanize %></h2>
+    <div class="line-groups"></div>
+  </div>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "simple_form" }) do |f| %>
     <%= f.error_notification %>

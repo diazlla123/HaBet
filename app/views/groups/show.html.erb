@@ -67,7 +67,7 @@
                     <div class="barprogress-task-indiviaul">
                       <div class="progress" style="background-color: #bbbbbbdd;" data-action="click->edit-progress#toggle">
                         <div class="progress-bar" role="progressbar" style="width: <%= progress.completion.round(2) %>%;">
-                          <%= progress.completion.round(2) %>
+                          <%= progress.completion.round(2) %> %
                         </div>
                       </div>
                     </div>
@@ -144,7 +144,7 @@
           </div>
 
           <div class="data-position-group-indivual" data-controller="place">
-            <div data-place-target="output"><p><%= @my_index %></p></div>
+            <div data-place-target="output" class="p-indexplace"><p><%= @my_index %></p></div>
             <p>Out of <%= @members.size unless @members.nil? %></p>
           </div>
         </div>
