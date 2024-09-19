@@ -57,7 +57,7 @@
 
         <div class="d-flex justify-content-between w-100">
           <div class="col-12" data-new-task-target="addButton">
-            <button class="addTaskButton" data-action="click->new-task#addTask">Add task</button>
+            <button class="addTaskButton" data-action="click->new-task#addTask">Add another task</button>
           </div>
         </div>
       </div>
@@ -80,9 +80,10 @@
         </div>
       <% end %>
       <h3>Group Photo</h3>
-      <%= f.input :photo, as: :file, label: false, input_html: { class: 'center-placeholder' } %>
+        <%= f.label :photo, "Upload photo", class: 'custom-file-upload' %>
+        <%= f.input :photo, as: :file, label: false, input_html: { class: 'center-placeholder d-none' } %>
     </div>
-    
+
     <%= f.submit "Create Group", class:"drk-button"%>
   <% end %>
   <%= link_to "Go back", root_path, class: "button-goback-newgroup" %>

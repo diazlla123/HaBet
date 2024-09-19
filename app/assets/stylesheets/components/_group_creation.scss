@@ -145,3 +145,25 @@
   padding: 0rem !important;
   margin: 0rem !important;
 }
+
+.custom-file-upload {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #00967a;
+  color: white;
+  font-weight: bold;
+  border: none;
+  font-size: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// input[type="file"] {
+//   display: none;
+// }
