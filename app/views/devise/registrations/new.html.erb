@@ -1,34 +1,41 @@
-<h2 class="form-title">Sign up</h2>
+<section class="sign-in-container">
+  <div class="container-title-habet">
+    <h2 class="title">HaBet</h2>
+    <p class="form-subtitle">Go further together</p>
+  </div>
 
-<h1 class="form-title">HaBet</h1>
-<p class="form-subtitle">Go further together</p>
-
-
-<div class="container-sm form-container">
+  <h3 class="form-title">Sign Up</h3>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "simple_form" }) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
+      <h3 class="h3-sing-in">Username</h3>
       <%= f.input :username,
                   required: true,
                   autofocus: true,
-                  input_html: { autocomplete: "username", placeholder: "JohnDoe", class: "form-control" } %>
+                  input_html: { autocomplete: "username", placeholder: "JohnDoe", class: "form-control" }, label: false %>
+      <h3 class="h3-sing-in">Frist Name</h3>
       <%= f.input :first_name,
                   required: true,
-                  input_html: { autocomplete: "first_name", placeholder: "John", class: "form-control" } %>
+                  input_html: { autocomplete: "first_name", placeholder: "John", class: "form-control" }, label: false %>
+      <h3 class="h3-sing-in">Last Name</h3>
       <%= f.input :last_name,
                   required: true,
-                  input_html: { autocomplete: "last_name", placeholder: "Doe", class: "form-control" } %>
+                  input_html: { autocomplete: "last_name", placeholder: "Doe", class: "form-control" }, label: false %>
+      <h3 class="h3-sing-in">Email</h3>
       <%= f.input :email,
                   required: true,
-                  input_html: { autocomplete: "email", placeholder: "Enter your email", class: "form-control" } %>
+                  input_html: { autocomplete: "email", placeholder: "Enter your email", class: "form-control" }, label: false %>
+      <h3 class="h3-sing-in">Password</h3>
       <%= f.input :password,
                   required: true,
                   hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                  input_html: { autocomplete: "new-password", placeholder: "Enter your password", class: "form-control" } %>
+                  input_html: { autocomplete: "new-password", placeholder: "Enter your password", class: "form-control" }, label: false %>
+      <h3 class="h3-sing-in">Passwoord Confirmation</h3>
       <%= f.input :password_confirmation,
                   required: true,
-                  input_html: { autocomplete: "new-password", placeholder: "Confirm your password", class: "form-control" } %>
+                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  input_html: { autocomplete: "new-password", placeholder: "Confirm your password", class: "form-control" }, label: false %>
       <%= f.input :photo, as: :file %>
     </div>
 
@@ -36,6 +43,8 @@
       <%= f.button :submit, "Sign up", class: "btn btn-submit" %>
     </div>
   <% end %>
-</div>
+</section>
 
-<%= render "devise/shared/links" %>
+
+
+<!-- <%= render "devise/shared/links" %> -->
