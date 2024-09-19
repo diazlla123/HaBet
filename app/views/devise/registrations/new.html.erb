@@ -31,7 +31,7 @@
                   required: true,
                   hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                   input_html: { autocomplete: "new-password", placeholder: "Enter your password", class: "form-control" }, label: false %>
-      <h3 class="h3-sing-in">Passwoord Confirmation</h3>
+      <h3 class="h3-sing-in">Password Confirmation</h3>
       <%= f.input :password_confirmation,
                   required: true,
                   hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),

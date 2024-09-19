@@ -6,16 +6,16 @@
 
 
 
-<!-- MEMBERS PODIUM-->
+
 
 <div class="container-podium" id="app">
 <div class="leaders">
   <ul id="topThreeList">
-    <!-- SECOND PLACE -->
+
     <% if sorted_positions.length >= 2 %>
       <li class="podium-list">
         <div class="lead-cats">
-          <!-- Toggable Delete Action -->
+
           <div class="toggable-action text-center d-none" data-edit-members-target="toggable">
             <%= link_to member_path(Member.find_by(group_id: group_id, user_id: sorted_positions[1][:user_id])),
                         data: { turbo_method: :delete,
@@ -38,10 +38,10 @@
       </li>
     <% end %>
 
-    <!-- FIRTS PLACE -->
+
     <li class="podium-list">
       <div class="lead-cats">
-        <!-- Toggable Delete Action -->
+
         <div class="toggable-action text-center d-none" data-edit-members-target="toggable">
           <%= link_to member_path(Member.find_by(group_id: group_id, user_id: sorted_positions[0][:user_id])),
                       data: { turbo_method: :delete,
