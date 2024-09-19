@@ -8,7 +8,7 @@
 }
 
 .card-group-title {
-  width: calc(100% - 140px);
+  width: 100%;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -18,7 +18,7 @@
   flex-shrink: 0;
   width: 100px;
   height: 7rem;
-  margin-right: 20px;
+  margin-right: 0.5rem;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
   object-fit: cover;
@@ -48,4 +48,10 @@
 .delete-button:active {
   transform: scale(0.9);
 }
+}
+.name-group-description{
+  width: 100%;
+}
+.progress-bar-index-group{
+  width: 112% !important;
 }
